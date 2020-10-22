@@ -10,8 +10,8 @@ import Link from 'next/link'
 import React from 'react'
 import { get } from '../utilities/fetchUtilities'
 import { useCurrency } from '../utilities/useCurrency'
-import { AboutGuides, BookingProcess, Tagline } from '../components/aboutGuides'
-import { useHasMounted } from '../utilities/has-mounted'
+import { AboutGuides } from '../components/aboutGuides'
+import { useHasMounted } from '../utilities/useHasMounted'
 import { url } from '../utilities/fetchUtilities'
 
 /**

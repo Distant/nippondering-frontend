@@ -4,7 +4,7 @@ import Container from '../../components/container'
 import Header from '../../components/header'
 import { resetPassword } from '../../login-service'
 import { Input, Button, Text, FormControl, FormLabel, FormHelperText, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading } from '@chakra-ui/core';
-import RequestStatus from '../../types/request-status';
+import RequestStatus from '../../types/requestStatus';
 import { FaChevronRight } from 'react-icons/fa';
 import { shadows, primaryButtonSolid } from '../../components/commonProps';
 

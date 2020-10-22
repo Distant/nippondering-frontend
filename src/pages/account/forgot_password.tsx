@@ -3,7 +3,7 @@ import { sendResetRequest } from '../../login-service'
 import { Input, Button, FormControl, FormLabel, Box, Heading, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Text } from '@chakra-ui/core';
 import { FaChevronRight } from 'react-icons/fa';
 import { shadows, primaryButtonOutline, primaryButtonSolid } from '../../components/commonProps';
-import RequestStatus from '../../types/request-status';
+import RequestStatus from '../../types/requestStatus';
 
 const ForgotPassword = () => {
   let [email, updateEmail] = useState("")

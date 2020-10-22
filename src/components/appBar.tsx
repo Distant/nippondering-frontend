@@ -1,6 +1,6 @@
 import React, { useState, useContext, RefObject } from 'react'
 import { UserContext } from '../user-context'
-import { useHasMounted } from '../utilities/has-mounted'
+import { useHasMounted } from '../utilities/useHasMounted'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { logout } from '../login-service'

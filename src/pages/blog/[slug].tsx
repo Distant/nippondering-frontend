@@ -5,7 +5,7 @@ import Head from 'next/head'
 import BlogPostFull from '../../types/blogPostFull'
 import BlogPostPreviewType from '../../types/blogPostPreview'
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/core'
-import PostView from '../../components/post-view'
+import PostView from '../../components/postView'
 import { FaChevronRight } from 'react-icons/fa'
 
 type Params = {

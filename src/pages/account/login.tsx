@@ -6,7 +6,7 @@ import { UserContext } from '../../user-context'
 import Link from 'next/link'
 import { attemptLogin } from '../../login-service'
 import { Button, Input, FormControl, FormLabel, Box, Heading, Flex, Text, Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/core"
-import RequestStatus from '../../types/request-status';
+import RequestStatus from '../../types/requestStatus';
 import { FaChevronRight } from 'react-icons/fa';
 import { primaryButtonOutline, primaryButtonSolid, shadows } from '../../components/commonProps';
 

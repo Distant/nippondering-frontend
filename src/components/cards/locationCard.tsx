@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { LocationDetail } from "../../types/tour";
 import { imgUrl } from "../../utilities/fetchUtilities";
-import { useHasMounted } from "../../utilities/has-mounted";
+import { useHasMounted } from "../../utilities/useHasMounted";
 import useImageLoad from "../../utilities/useImageLoad";
 import { shadows } from "../commonProps";
 import styles from './tourCard.module.scss'
