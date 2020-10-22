@@ -28,7 +28,7 @@ function BigTourCard({ tour }: Props) {
         className="rounded4"
         maxWidth={["100%", "100%", "100%"]}
         backgroundColor="white"
-        minWidth={{ base: "100%", md: "20px" }}
+        minWidth={{ base: "0", md: "20px" }}
         h={["620px", -1, "620px"]}
         position="relative"
         {...shadows[2]}
