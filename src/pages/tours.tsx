@@ -182,7 +182,7 @@ const Tours: React.FC<Props> = ({ tours, locations, location }: Props) => {
         }
         <Box display={{ base: "flex", md: "none" }} justifyContent="left" mt={4} flexWrap="wrap" alignItems="center">
           {filteredTours && filteredTours.map((tour, i) =>
-            <Box flexGrow={1} flexBasis={"calc((999px - 100%) * 1024)"} minWidth="360px" key={tour.tourId} mx={1}>
+            <Box flexGrow={1} flexBasis={"calc((999px - 100%) * 1024)"} key={tour.tourId} mx={1}>
               {<TourListCard tour={tour} showPrice={loaded} />}
             </Box>
           )}
