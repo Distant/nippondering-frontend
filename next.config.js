@@ -1,8 +1,8 @@
 const BrotliPlugin = require('brotli-webpack-plugin');
 
 module.exports = {
+  trailingSlash: true,
   experimental: {
-    trailingSlash: true,
     polyfillOptimzation: true
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
