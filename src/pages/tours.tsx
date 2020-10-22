@@ -1,16 +1,14 @@
 import React, { useCallback, useMemo } from 'react'
-import { Box, Breadcrumb, Icon, BreadcrumbItem, BreadcrumbLink, Heading, Text, Image, Flex, Stack, useBreakpointValue, Spinner, Button, Grid, SimpleGrid } from '@chakra-ui/core'
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Heading, Text, Image, Flex, Stack, useBreakpointValue, Spinner, Button, Grid, SimpleGrid } from '@chakra-ui/core'
 import { shadows, cardBodyProps, cardTitleProps, PriceDisplay, ctaButtonProps, primaryButtonSolid, primaryButtonOutline, breadcrumbProps } from '../components/commonProps'
-import { TourPreview, Price, LocationDetail } from '../types/tour'
+import { TourPreview, LocationDetail } from '../types/tour'
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useCurrency } from '../utilities/useCurrency';
 import Select, { ValueType, ActionMeta, Styles } from 'react-select'
 import { get, imgUrl, url } from '../utilities/fetchUtilities';
 import { BigTourCard } from "../components/cards";
 import Head from 'next/head';
 import useImageLoad from '../utilities/useImageLoad';
-import { Tagline } from '../components/aboutGuides';
 import Container from '../components/container';
 
 async function fetchTours(currency?: string) {
