@@ -1,4 +1,5 @@
-import React, { useState, useContext, RefObject } from 'react'
+import { useState, useContext, RefObject } from 'react';
+import * as React from 'react';
 import { UserContext } from '../user-context'
 import { useHasMounted } from '../utilities/useHasMounted'
 import Link from 'next/link'

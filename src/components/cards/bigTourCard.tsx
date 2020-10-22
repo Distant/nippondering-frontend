@@ -1,5 +1,4 @@
 import { Box, Image, Flex, Heading, Text, Spinner, List, ListIcon, ListItem, Button } from "@chakra-ui/core";
-import React from "react";
 import { shadows, PriceDisplay, ctaButtonProps } from "../commonProps";
 import Link from "next/link";
 import useImageLoad from "../../utilities/useImageLoad";

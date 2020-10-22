@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, Heading, Text, Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/core'
 import { FaChevronRight } from 'react-icons/fa'
 import { shadows } from '../components/commonProps'

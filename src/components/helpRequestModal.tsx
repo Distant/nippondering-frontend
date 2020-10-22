@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react';
 import { Box, Text, Modal, FormLabel, Flex, Button, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useToast } from '@chakra-ui/core'
 import { Form, Formik, Field } from 'formik'
 import * as Yup from 'yup'
@@ -29,7 +29,7 @@ const sendRequest = async (request: RequestModel, onSuccess: () => void, onError
 }
 
 const HelpRequest = ({ isOpen, onClose }: Props) => {
-  const [error, setError] = React.useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
   const toast = useToast()
   const RequestForm = () => {
     return (

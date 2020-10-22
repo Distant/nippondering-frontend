@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo } from 'react'
+import { useCallback, useMemo } from 'react';
+import * as React from 'react';
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Heading, Text, Image, Flex, Stack, useBreakpointValue, Spinner, Button, Grid, SimpleGrid } from '@chakra-ui/core'
 import { shadows, cardBodyProps, cardTitleProps, PriceDisplay, ctaButtonProps, primaryButtonSolid, primaryButtonOutline, breadcrumbProps } from '../components/commonProps'
 import { TourPreview, LocationDetail } from '../types/tour'

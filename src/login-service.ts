@@ -1,5 +1,3 @@
-import React from 'react'
-
 export type LoginModel = {
   email: string,
   password: string,

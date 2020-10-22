@@ -1,5 +1,5 @@
 import { Box, Image, Flex, Heading, Spinner, Button } from "@chakra-ui/core";
-import React from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { LocationDetail } from "../../types/tour";
 import { imgUrl } from "../../utilities/fetchUtilities";
@@ -9,7 +9,7 @@ import { shadows } from "../commonProps";
 import styles from './tourCard.module.scss'
 
 function LocationCard({ location }: { location: LocationDetail; }) {
-  const [shadow, setShadow] = React.useState(2);
+  const [shadow, setShadow] = useState(2);
   const hasMounted = useHasMounted();
   const { imgRef, imgLoaded } = useImageLoad();
   const hideSpinner = !hasMounted || imgLoaded;

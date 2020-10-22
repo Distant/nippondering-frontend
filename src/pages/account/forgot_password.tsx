@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import * as React from 'react';
 import { sendResetRequest } from '../../login-service'
 import { Input, Button, FormControl, FormLabel, Box, Heading, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Text } from '@chakra-ui/core';
 import { FaChevronRight } from 'react-icons/fa';

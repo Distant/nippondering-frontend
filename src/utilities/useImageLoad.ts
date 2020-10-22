@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react";
 
 /**
  *  Returns a ref to attach to an <img> and a boolean representing the loaded state

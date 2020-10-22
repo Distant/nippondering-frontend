@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react';
 import { Box, Breadcrumb, Icon, BreadcrumbItem, BreadcrumbLink, Text, List, ListItem, ListIcon, Heading } from '@chakra-ui/core'
 import { shadows, cardBodyProps } from '../components/commonProps'
 import { useCurrency } from '../utilities/useCurrency'
@@ -30,7 +30,7 @@ const payment = "You won't pay for your tour immediately. After requesting a boo
 const terms = "I agree that the fee paid is partially refundable or non-refundable in accordance with the terms described on this pricing page. Any personal information provided will only be used to receive the payment and offer the requested service and will not be disclosed to any other third parties."
 
 const Pricing = () => {
-  const [pricingInfo, setPricingInfo] = React.useState<PricingInfo | undefined>(undefined)
+  const [pricingInfo, setPricingInfo] = useState<PricingInfo | undefined>(undefined)
   const [loaded] = useCurrency(async (c) => {
     const res = await get(url(`api/pricing?currency=${c}`))
     const pI = await res.json()

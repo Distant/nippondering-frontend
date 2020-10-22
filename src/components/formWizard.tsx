@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement, useEffect } from "react"
+import { Children, useState, ReactNode, ReactElement, useEffect } from "react";
 import { FieldProps, FormikConfig, FormikValues, FormikHelpers, Formik, Form, ErrorMessage, FormikProps, useFormikContext } from "formik"
 import { Input, Flex, Box, Button, InputGroup, Textarea, Text, Checkbox, TextProps } from "@chakra-ui/core"
 import { ctaButtonProps, errorTextProps } from "./commonProps"
@@ -38,8 +38,8 @@ export const StyledError = ({ name, ...props }: { name: string, props?: TextProp
 export const FormStep = ({ children, validationSchema }: FormStepProps) => { return <>{children}</> }
 
 export const FormWizard = ({ children, ...props }: FormikConfig<FormikValues>) => {
-  const childrenArray = React.Children.toArray(children)
-  const [currentStep, setCurrentStep] = React.useState(0)
+  const childrenArray = Children.toArray(children)
+  const [currentStep, setCurrentStep] = useState(0)
   const step = (childrenArray[currentStep])
 
   /* useEffect(() => {

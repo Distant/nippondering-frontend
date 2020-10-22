@@ -1,5 +1,5 @@
 import { Box, Image, Flex, Heading, Text, Spinner, Button } from "@chakra-ui/core";
-import React from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Props } from "./cards";
 import { imgUrl } from "../../utilities/fetchUtilities";
@@ -9,7 +9,7 @@ import { useHasMounted } from "../../utilities/useHasMounted";
 import styles from './tourCard.module.scss'
 
 function TourCard({ tour }: Props) {
-  const [shadow, setShadow] = React.useState(2);
+  const [shadow, setShadow] = useState(2);
   const { imgRef, imgLoaded } = useImageLoad()
   const mounted = useHasMounted()
   const hideSpinner = !mounted || imgLoaded || !tour.images[0];

@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { Box, Flex, Text, Heading, Image } from '@chakra-ui/core'
 import { cardTitleProps, cardBodyProps } from './commonProps'
 import { ResponsivePicture } from './responsivePicture'
 
 const GuideProfile = ({ name, summary }: { name: string, summary: string }) => {
-  const [loadImg, setLoadImg] = React.useState(false)
+  const [loadImg, setLoadImg] = useState(false)
   useEffect(() => {
     setLoadImg(true)
   })

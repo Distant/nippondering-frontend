@@ -1,5 +1,6 @@
 import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Flex } from '@chakra-ui/core'
-import React, { RefObject } from 'react'
+import { RefObject } from 'react';
+import * as React from 'react';
 
 type Props = {
   children: React.ReactNode[],

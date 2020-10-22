@@ -1,4 +1,4 @@
-import React from 'react'
+import { createContext } from 'react';
 
 export type UserSession = {
     user: string | null,
@@ -6,4 +6,4 @@ export type UserSession = {
     logout: () => any
 }
 
-export const UserContext= React.createContext<UserSession>({user: null, login: (s: string) => {}, logout: () => {}})
+export const UserContext= createContext<UserSession>({user: null, login: (s: string) => {}, logout: () => {}})

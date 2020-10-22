@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, Flex, Text, Heading, Avatar, Image, Stack, Button, Grid, GridProps } from '@chakra-ui/core'
 import { ctaButtonProps } from './commonProps'
 import useImageLoad from '../utilities/useImageLoad'

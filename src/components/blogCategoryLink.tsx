@@ -1,5 +1,5 @@
 import Link from "next/link"
-import React, { ReactNode } from "react"
+import { ReactNode } from "react";
 import { Text, Button } from '@chakra-ui/core'
 
 type Props = {

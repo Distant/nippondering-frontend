@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react';
 import { Button } from '@chakra-ui/core'
 import { ctaButtonProps } from './commonProps'
 import dynamic from 'next/dynamic'

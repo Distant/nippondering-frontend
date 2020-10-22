@@ -7,7 +7,7 @@ import { LocationCard } from "../components/cards"
 import { ctaButtonProps } from '../components/commonProps'
 import { TourPreview, LocationDetail } from '../types/tour'
 import Link from 'next/link'
-import React from 'react'
+import { useState } from 'react';
 import { get } from '../utilities/fetchUtilities'
 import { useCurrency } from '../utilities/useCurrency'
 import { AboutGuides } from '../components/aboutGuides'
@@ -43,7 +43,7 @@ type Props = {
 
 const Index = ({ popTours, popLocations }: Props) => {
   const hasMounted = useHasMounted()
-  const [tours, setTours] = React.useState(popTours)
+  const [tours, setTours] = useState(popTours)
   const [loaded] = useCurrency(async (currency) => {
     const [newTours, _] = await fetchTours(currency)
     setTours(newTours)

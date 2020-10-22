@@ -1,5 +1,4 @@
 import { Box, Flex, FormLabel, InputLeftElement, useToast } from "@chakra-ui/core"
-import React from "react"
 import { TourFull } from "../types/tour"
 import { FormInput, FormInputMulti, FormIconInput, FormCheckbox, FormWizard, FormStep, StyledError } from "./formWizard"
 import * as Yup from 'yup'
@@ -152,7 +151,7 @@ const BookingForm = ({ tour }: { tour: TourFull }) => {
         </FormStep>
       </FormWizard>
     </Box >
-  )
+  );
 }
 
 export default BookingForm

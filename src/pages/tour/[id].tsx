@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react';
 import { TourFull, TourPreview } from '../../types/tour'
 import { Box, Heading, Text, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Icon, List, ListItem, ListIcon, Button, Input, Divider, Image, FormLabel, Flex, Checkbox, InputLeftElement, HiddenTransition, Spinner } from '@chakra-ui/core'
 import { shadows, PriceDisplay } from '../../components/commonProps';

@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
-import React from 'react'
+import { useState, useEffect } from 'react';
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ChakraProvider, Box, Flex } from '@chakra-ui/core'
@@ -18,7 +18,7 @@ import { useRouter } from 'next/router'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
-  const [user, setUser] = React.useState<string | null>(null)
+  const [user, setUser] = useState<string | null>(null)
   const login = (name: string) => {
     setUser(name)
   }
@@ -26,12 +26,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     setUser("")
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     getSession(s => login(s), _ => logout())
   }, [router.pathname])
 
-  const [currency, setCurrency] = React.useState<CurrencyType>('USD')
-  const [open, setOpen] = React.useState(false)
+  const [currency, setCurrency] = useState<CurrencyType>('USD')
+  const [open, setOpen] = useState(false)
 
   return (
     <>

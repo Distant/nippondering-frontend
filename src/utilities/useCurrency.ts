@@ -1,5 +1,6 @@
 import { CurrencyType, currencyContext } from "../currencyContext"
-import React, { useRef, useContext } from "react"
+import { useRef, useContext } from "react";
+import * as React from "react";
 import useSWR, { responseInterface } from "swr"
 import { Interface } from "readline"
 

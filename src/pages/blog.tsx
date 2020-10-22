@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import Layout from '../components/layout'
 import BlogPostPreviewType from '../types/blogPostPreview'
 import PostView from '../components/postView'
@@ -54,7 +54,7 @@ const Blog = ({ posts, totalPages }: Props) => {
   const postCount = category && postTag ? postTag.postCount : posts.length
   const pages = Math.ceil(postCount / 3)
   const page = Number.parseInt(pageQuery as string)
-  const [currentPage, setPage] = React.useState(page ? Math.max(0, Math.min(pages - 1, page)) : 0)
+  const [currentPage, setPage] = useState(page ? Math.max(0, Math.min(pages - 1, page)) : 0)
 
   useEffect(() => {
     if (category) setPage(0)
