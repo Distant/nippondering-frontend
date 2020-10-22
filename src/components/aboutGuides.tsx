@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { Box, Flex, Text, Heading, Image } from '@chakra-ui/core'
 import { cardTitleProps, cardBodyProps } from './commonProps'
 import { ResponsivePicture } from './responsivePicture'
-//import { FaWpforms, FaPaypal, FaSun, FaHandPointer } from 'react-icons/fa'
 
 const GuideProfile = ({ name, summary }: { name: string, summary: string }) => {
   const [loadImg, setLoadImg] = React.useState(false)

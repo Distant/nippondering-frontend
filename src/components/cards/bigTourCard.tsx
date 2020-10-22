@@ -6,10 +6,12 @@ import useImageLoad from "../../utilities/useImageLoad";
 import { FaChevronRight } from "react-icons/fa";
 import { imgUrl } from "../../utilities/fetchUtilities";
 import { Props } from "./cards";
+import { useHasMounted } from "../../utilities/useHasMounted";
 
 function BigTourCard({ tour }: Props) {
-  const { imgRef, imgLoaded } = useImageLoad();
-  const hideSpinner = imgLoaded || !tour.images[0];
+  const { imgRef, imgLoaded } = useImageLoad()
+  const mounted = useHasMounted()
+  const hideSpinner = !mounted || imgLoaded || !tour.images[0]
 
   return <Box position="relative" mb={8}>
     {!hideSpinner &&
@@ -29,7 +31,6 @@ function BigTourCard({ tour }: Props) {
         backgroundColor="white"
         minWidth={{ base: "100%", md: "20px" }}
         h={["620px", -1, "620px"]}
-        m={1}
         position="relative"
         {...shadows[2]}
       >

@@ -25,7 +25,14 @@ export const customTheme = extendTheme({
       border: "1px solid rgb(255,127,80)",
       padding: 4,
       margin: { base: 2, lg: 8 }
-    }
+    },
+    imgScale: {
+      _hover: {
+        image: {
+          transform: "scale(1.1)"
+        }
+      }
+    },
   },
   textStyles: {
     notes: {
@@ -149,8 +156,9 @@ export const customTheme = extendTheme({
       fontSize: { base: "1.2rem", md: "1.2rem" },
       mx: 0,
       textAlign: "center",
-      color: "black",
+      color: "white",
     },
+
     blogPost: {
       margin: "auto",
       color: "gray.600",
@@ -180,7 +188,7 @@ export const customTheme = extendTheme({
     }
   },
   colors: {
-    blue: { 800: "#32375a"},
+    blue: { 800: "#32375a" },
     black: "#32334F",
     white: "#FFF",
     purple: {

@@ -154,6 +154,9 @@ const customStyles: any = {
     border: "2px solid white",
     backgroundColor: "transparent",
     ":hover": { borderColor: "white", cursor: "pointer" },
+    div: {
+      ":first-of-type": {overflow: "initial"}
+    }
   }),
   singleValue: (provided: any, state: any) => {
     const opacity = state.isDisabled ? 0.5 : 1;

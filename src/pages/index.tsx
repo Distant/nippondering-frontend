@@ -48,6 +48,7 @@ const Index = ({ popTours, popLocations }: Props) => {
     const [newTours, _] = await fetchTours(currency)
     setTours(newTours)
   })
+  
   return (
     <>
       <Head>
@@ -86,7 +87,7 @@ const Index = ({ popTours, popLocations }: Props) => {
 
         <Heading textStyle="sectionTitle" >Popular Locations</Heading>
         <SimpleGrid columns={[1, 2, 3, 4]} mb={8} spacing={4} justifyItems="center">
-          {popLocations && hasMounted ? popLocations.map((location => <LocationCard key={location.locationId} location={location} />)) : <Box minH="220px" />}
+          {popLocations ? popLocations.map((location => <LocationCard key={location.locationId} location={location} />)) : <Box minH="220px" />}
         </SimpleGrid>
       </Container>
       <AboutGuides />
