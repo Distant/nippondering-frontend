@@ -1,4 +1,4 @@
-import { Box, Image, Flex, Heading, Spinner, Button } from "@chakra-ui/core";
+import { Box, Image, Flex, Heading, Spinner, Button, Text } from "@chakra-ui/core";
 import { useState } from "react";
 import Link from "next/link";
 import { LocationDetail } from "../../types/tour";
@@ -38,11 +38,16 @@ function LocationCard({ location }: { location: LocationDetail; }) {
           m={1}
           onMouseOver={() => setShadow(3)}
           onMouseOut={() => setShadow(2)}
-          _hover={{ cursor: "pointer" }}
+          _hover={{
+            cursor: "pointer",
+          }}
           transform={`translate(${hideSpinner ? "0, 0" : "0, 100px"})`}
           opacity={hideSpinner ? 100 : 0}
           position="relative"
           {...shadows[shadow]}>
+
+          <Text as="h5" className="overlay" background="black" opacity="0" position="absolute" width="100%" height="100%" zIndex="1" transition="opacity 200ms ease-out" />
+          <Text as="h2" className="overlay" opacity="0" color="white" position="absolute" width="100%" textAlign="center" top="50%" zIndex="2" transition="opacity 100ms ease-out">Read More</Text>
 
           <Image
             className="card-image"
@@ -52,8 +57,8 @@ function LocationCard({ location }: { location: LocationDetail; }) {
             h="100%"
             alt={location.name}
             ref={imgRef} />
-          <Flex direction="column" background="blue.800" position="absolute" bottom="0.5rem" left={"24%"} padding="0.5rem" width="100%" align="center">
-            <Heading textStyle="locationCardTitle" >{location.name}</Heading>
+          <Flex direction="column" background="blue.800" position="absolute" bottom="0.5rem" left={"24%"} right="0" padding="0.5rem" align="center">
+            <Heading textStyle="locationCardTitle" width="100%" paddingRight={4} >{location.name}</Heading>
           </Flex>
 
         </Button>

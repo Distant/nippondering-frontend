@@ -155,7 +155,7 @@ export const customTheme = extendTheme({
       fontWeight: "bold",
       fontSize: { base: "1.2rem", md: "1.2rem" },
       mx: 0,
-      textAlign: "center",
+      textAlign: "right",
       color: "white",
     },
 

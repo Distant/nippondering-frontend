@@ -1,3 +1,11 @@
 .imgScale:hover img {
   transform: scale(1.1);
 }
+
+.imgScale:hover h5 {
+    opacity: 0.5;
+}
+
+.imgScale:hover h2 {
+  opacity: 1;
+}
