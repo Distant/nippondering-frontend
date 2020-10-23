@@ -31,7 +31,7 @@ const PostView = ({ post, preview }: Props) => {
         )}</Flex>
         <Divider my={2} color="#DDE" />
         <Box mx={8} textStyle="blogPost">
-          <ReactMarkdown source={post.content} escapeHtml={false} disallowedTypes={preview ? ["image"] : []} />
+          <ReactMarkdown source={post.content} escapeHtml={false} disallowedTypes={preview ? ["image", "link"] : []} />
         </Box>
         {preview ?
           <Box
