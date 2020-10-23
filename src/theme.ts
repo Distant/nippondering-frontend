@@ -7,15 +7,80 @@ export const customTheme = extendTheme({
       html: {
         fontFamily: "Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,Ubuntu, Cantarell, Fira Sans,Droid Sans, Helvetica Neue, sans-serif",
         scrollbarVisible: "always",
-        scrollBehavior: "smooth"
+        scrollBehavior: "smooth",
+        padding: 0,
+        margin: 0,
+        textRendering: "optimizeSpeed"
       },
       body: {
         overflowY: "scroll"
+      },
+      a: {
+        color: "inherit",
+        textDecoration: "none",
+      },
+      "a:focus": {
+        outline: "none",
+      },
+      "*, before, after": {
+        boxSizing: "border-box",
       },
       ".js-focus-visible :focus:not([data-focus-visible-added])": {
         outline: "none",
         boxShadow: "none"
       },
+      ".background-pattern": {
+        backgroundColor: "#f5f5f8",
+        position: "relative",
+        background: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92BB' fill-opacity='0'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      },
+      ".background-pattern-gradient": {
+        top: 0,
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        zIndex: "-1",
+        backgroundColor: "#f5f5f8"
+      },
+      ".card-image": {
+        objectFit: "cover",
+        width: "100%",
+        height: "50%",
+      },
+      ".hideImages img": {
+        display: "none",
+      },
+      ".cover-image": {
+        width: "100%",
+        height: "50vh",
+        objectFit: "cover",
+      },
+      ".cover-image-full": {
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+      },
+      ".tagline": {
+        filter: "drop-shadow(2px 4px 4px rgba(46, 21, 48, 0.3))",
+      },
+      /* push overlay abover appbar */
+      ".chakra-modal__overlay": {
+        zIndex: 10,
+      },
+      ".slick-list": {
+        padding: "4px",
+      },
+      ".rounded4": {
+        borderRadius: "0.25rem",
+        overflow: "hidden",
+      },
+      ".blur-image": {
+        filter: "blur(2px)",
+      },
+      ".drop-shadow": {
+        filter: "drop-shadow(2px 4px 8px rgba(46, 21, 48, 0.3))",
+      },
+
     }
   },
   layerStyles: {
