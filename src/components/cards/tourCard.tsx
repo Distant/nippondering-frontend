@@ -50,8 +50,8 @@ function TourCard({ tour }: Props) {
           {...shadows[shadow]}
         >
           <Box width="100%" height="50%" overflow="hidden" position="relative">
-            <Text as="h5" className="overlay" background="black" opacity="0" position="absolute" width="100%" height="100%" zIndex="1" transition="opacity 200ms ease-out"/>
-            <Text as="h2" className="overlay" opacity="0" color="white" position="absolute" width="100%" textAlign="center" top="50%" zIndex="2" transition="opacity 100ms ease-out">Read More</Text>
+            <Text as="section" className="overlay" background="black" opacity="0" position="absolute" width="100%" height="100%" zIndex="1" transition="opacity 200ms ease-out"/>
+            <Text as="p" className="overlay" opacity="0" color="white" position="absolute" width="100%" textAlign="center" top="50%" zIndex="2" transition="opacity 100ms ease-out">Read More</Text>
             <Image
               className="cover-image-full"
               transition="transform 200ms ease-out"
