@@ -274,13 +274,15 @@ const NipAppBar = () => {
             <Box display={["none", "none", "block"]}>
               {session.user != "" ?
                 <Flex direction="row-reverse" alignItems="center">
-                  <Button color="white" maxHeight="3rem" border="2px" variant="unstyled" onClick={
+                  <Button color="white" maxHeight="3rem" border="0px" variant="unstyled" onClick={
                     (e) => {
                       e.preventDefault();
                       handleLogout()
                     }
-                  }><Text mx="2rem" color="white">Logout</Text></Button>
-                  <Heading as="h4" pr="1rem" fontWeight="light" size="sm" color="white">Logged in as {session.user}</Heading>
+                  }>
+                    <Text px={2} color="white">Logout</Text>
+                  </Button>
+                  <Heading as="p" width="min-content" px={2} fontWeight="light" size="sm" color="white">Welcome {session.user}</Heading>
                 </Flex>
                 :
                 <Flex direction="row-reverse" alignItems="center">
@@ -311,7 +313,9 @@ const NipAppBar = () => {
                     e.preventDefault();
                     handleLogout()
                   }
-                }><Text mx="2rem" color="white">Logout</Text></Button>
+                }>
+                  <Text mx="2rem" color="white">Logout</Text>
+                </Button>
                 <Heading as="h4" pr="1rem" fontWeight="light" size="sm" color="white">Logged in as {session.user}</Heading>
               </Flex>
 
