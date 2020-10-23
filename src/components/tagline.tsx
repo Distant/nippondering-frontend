@@ -44,6 +44,7 @@ export const Tagline = ({ minimal }: { minimal?: boolean }) => {
         width="100%"
         height="calc(50vh - 5rem)" minHeight="350px"
         zIndex={-10}
+        marginTop="-10px" //remove weird blurry thing
         backgroundColor="#313658">
         <ResponsivePicture
           baseUrl="/assets/kobe_sm.jpg"
