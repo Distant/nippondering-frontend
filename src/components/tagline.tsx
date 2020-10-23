@@ -83,11 +83,13 @@ export const Tagline = ({ minimal }: { minimal?: boolean }) => {
 
             <Box w="100%" display="flex" justifyContent="center">
               <Link href="/tours">
-                <Button {...ctaButtonProps} boxShadow="0px 6px 11px rgb(88 30 97 / 22%), 0 8px 20px rgb(44 9 70 / 15%)" my={4} size="lg" >See our Tours</Button>
+                <Button {...ctaButtonProps} boxShadow="0px 6px 11px rgb(88 30 97 / 22%), 0 8px 20px rgb(44 9 70 / 15%)"
+                  _hover={{
+                    boxShadow: "0px 6px 15px rgb(88 30 97 / 22%), 0 8px 28px rgb(44 9 70 / 15%)",
+                    transform: "scale(1.12)"
+                  }} my={4} size="lg" >See our Tours</Button>
               </Link>
             </Box>
-
-
           </>}
         </Flex>
         {!minimal && <BookingProcess gridRow={3} alignSelf="end" />}
