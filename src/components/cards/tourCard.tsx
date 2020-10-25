@@ -6,7 +6,6 @@ import { imgUrl } from "../../utilities/fetchUtilities";
 import useImageLoad from "../../utilities/useImageLoad";
 import { shadows, PriceDisplay } from "../commonProps";
 import { useHasMounted } from "../../utilities/useHasMounted";
-import styles from './tourCard.module.scss'
 
 function TourCard({ tour }: Props) {
   const [shadow, setShadow] = useState(2);
@@ -31,7 +30,7 @@ function TourCard({ tour }: Props) {
         <Button
           variant="unstyled"
           whiteSpace="pre-wrap"
-          className={"rounded4 " + styles.imgScale}
+          className={"rounded4 imgScale"}
           maxWidth={{ base: "450px" }}
           transition="box-shadow 0.2s ease-out, opacity 250ms, transform 300ms ease-out"
           backgroundColor="white"

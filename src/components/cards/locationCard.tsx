@@ -6,7 +6,6 @@ import { imgUrl } from "../../utilities/fetchUtilities";
 import { useHasMounted } from "../../utilities/useHasMounted";
 import useImageLoad from "../../utilities/useImageLoad";
 import { shadows } from "../commonProps";
-import styles from './tourCard.module.scss'
 
 function LocationCard({ location }: { location: LocationDetail; }) {
   const [shadow, setShadow] = useState(2);
@@ -30,7 +29,7 @@ function LocationCard({ location }: { location: LocationDetail; }) {
       <Link href={`/tours/location/${location.slug}`}>
         <Button
           variant="unstyled"
-          className={"rounded4 " + styles.imgScale}
+          className={"rounded4 imgScale"}
           maxWidth={{ base: "450px" }}
           transition="box-shadow 0.2s ease-out, opacity 250ms, transform 300ms ease-out"
           backgroundColor="white"
