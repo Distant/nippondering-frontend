@@ -80,7 +80,17 @@ export const customTheme = extendTheme({
       ".drop-shadow": {
         filter: "drop-shadow(2px 4px 8px rgba(46, 21, 48, 0.3))",
       },
-
+      ".imgScale:hover, .imgScale:focus": {
+        section: {
+          opacity: 0.5,
+        },
+        p: {
+          opacity: 1,
+        },
+        img: {
+          transform: "scale(1.1)",
+        }
+      }
     }
   },
   layerStyles: {
