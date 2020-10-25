@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { TourFull, TourPreview } from '../../types/tour'
-import { Box, Heading, Text, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Icon, List, ListItem, ListIcon, Button, Input, Divider, Image, FormLabel, Flex, Checkbox, InputLeftElement, HiddenTransition, Spinner } from '@chakra-ui/core'
+import { Box, Heading, Text, Breadcrumb, BreadcrumbItem, BreadcrumbLink, List, ListItem, ListIcon, Image,  Flex } from '@chakra-ui/core'
 import { shadows, PriceDisplay } from '../../components/commonProps';
 import Slider from 'react-slick'
-import { Field } from 'formik'
-import { FormWizard, FormStep, FormInput, FormIconInput, FormInputMulti, StyledError, FormCheckbox } from '../../components/formWizard'
 import { useCurrencyEffect } from '../../utilities/useCurrency'
 import { CurrencyType } from '../../currencyContext'
-import { FaChevronRight, FaCheck, FaPhone, FaTimes } from 'react-icons/fa'
+import { FaChevronRight, FaCheck, FaTimes } from 'react-icons/fa'
 import Head from 'next/head';
 import useSWR from 'swr'
 import { url } from '../../utilities/fetchUtilities';
@@ -159,7 +157,7 @@ const Tour: React.FC<Props> = ({ tour }: Props) => {
               <Box backgroundColor="#fafafc" px={[0, 1, 8]} pt={4} pb={1} mb={4}>
                 <Heading as="h1" textStyle="tourTitle">{tourDetail.title}</Heading>
                 <Flex width="100%" justify="center" flexWrap="wrap" mb={4}>
-                  <Text textStyle="cardBody" maxWidth="80ch" flexGrow={1} lineHeight="1.8rem">{tourDetail.description}</Text>
+                  <Text textStyle="cardBody" flexGrow={1} lineHeight="1.8rem">{tourDetail.description}</Text>
                   <Flex flexDirection="column" flexGrow={1} flexBasis="220px" m={1} borderLeft={{ base: "", lg: "1px solid #DDD" }} alignItems="center">
                     <Text alignSelf="flex-start" textStyle="cardSubHeading"><b>Highlights</b> </Text>
                     <List alignSelf="flex-start">

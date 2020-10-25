@@ -46,10 +46,13 @@ export const cardBodyProps = {
 }
 
 export const errorTextProps = {
+  textStyle: "cardBody",
+  paddingTop: "0",
+  marginTop: "-.5rem",
   fontWeight: "normal",
   fontSize: "0.9rem",
   color: "red.400",
-  letterSpacing: "0.01rem"
+  letterSpacing: "0.01rem",
 }
 
 export const ctaButtonProps: ButtonProps = {

@@ -1,18 +1,70 @@
-import { Box, Flex, FormLabel, InputLeftElement, useToast } from "@chakra-ui/core"
+import { Box, Flex, FormLabel, useToast, Text, Divider } from "@chakra-ui/core"
 import { TourFull } from "../types/tour"
-import { FormInput, FormInputMulti, FormIconInput, FormCheckbox, FormWizard, FormStep, StyledError } from "./formWizard"
+import { FormInput, FormInputMulti, FormCheckbox, FormWizard, FormStep, StyledError } from "./formWizard"
 import * as Yup from 'yup'
 import { Field, useFormikContext } from "formik"
-import { FaPhone } from "react-icons/fa"
 import { post, url } from "../utilities/fetchUtilities"
+import { PriceDisplay } from "./commonProps"
+
+const TotalPrice = ({ tour }: { tour: TourFull }) => {
+  const { values }: { values: any } = useFormikContext()
+  return (
+    <Box textStyle="cardBody">
+      <Divider my={2} />
+      <Text>
+        {"Total price: "}
+        <PriceDisplay size="lg" symbol={tour.price.currencySymbol} code={tour.price.currencyCode} amount={tour.price.fee + tour.price.base + ((Math.max(0, values.adults - 4)) * tour.price.extras)} />
+          *
+      </Text>
+      <Text as="sub">
+        *Includes price for up to 4 people, and transportation costs for the guide to get to and from the tour location
+        <br />
+        *You will not need to pay until the booking is confirmed through email
+      </Text>
+    </Box>
+  )
+}
 
 const BookingForm = ({ tour }: { tour: TourFull }) => {
   const toast = useToast()
   const Preview = () => {
     const { values }: { values: any } = useFormikContext()
-    return (<Box>
-      {JSON.stringify(values!)}
-    </Box>)
+    return (
+      <Box textStyle="cardBody"  sx={{ lineHeight: "2rem" }} paddingY="0">
+        <Text as="span">
+          <Text as="b">Tour: </Text>
+          {tour.title}
+        </Text>
+        <br />
+        <Text as="span">
+          <Text as="b">Name: </Text>
+          {values.firstName + " " + values.lastName}
+        </Text>
+        <br />
+        <Text>
+          <Text as="b">Email: </Text>
+          {values.email}
+        </Text>
+        <Text as="span">
+          <Text as="b">Adults: </Text>
+          {values.adults}
+          <Text as="b">, Children: </Text>
+          {values.children}
+        </Text>
+        <br />
+        <Text>
+          <Text as="b">Date: </Text>
+          {values.date}
+        </Text>
+        <Text>
+          <Text as="b">Time: </Text>
+          {values.time}
+        </Text>
+        {values.message && values.message.length > 1 && <Text>
+          <Text as="b">Message: </Text>
+          {values.message}
+        </Text>}
+      </Box>)
   }
   return (
     <Box mx={[0, 2, 4]} >
@@ -127,6 +179,9 @@ const BookingForm = ({ tour }: { tour: TourFull }) => {
             <Field component={FormInputMulti} type="textarea" name="message" />
             <StyledError name="message" />
           </Box>
+
+          <TotalPrice tour={tour} />
+
         </FormStep>
 
         {/* <Box w="100%" pb={2}>
@@ -137,14 +192,15 @@ const BookingForm = ({ tour }: { tour: TourFull }) => {
 
         <FormStep validationSchema={
           Yup.object({
-
             terms: Yup.boolean().oneOf([true], "Must accept the terms and conditions").required("Required")
           })}>
 
           <Preview />
+          <TotalPrice tour={tour} />
 
-          <Flex w="100%" alignItems="center">
-            <FormLabel htmlFor="terms" color="black">Accept Terms and Conditions *</FormLabel>
+
+          <Flex w="100%" py={2} alignItems="center" textStyle="cardBody">
+            <FormLabel htmlFor="terms" color="black">Accept <a href="/pricing" style={{ textDecoration: "underline" }}>Terms and Conditions</a></FormLabel>
             <Field component={FormCheckbox} borderColor="black" type="checkbox" name="terms" id="terms" />
           </Flex>
           <StyledError name="terms" />
