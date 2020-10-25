@@ -67,9 +67,6 @@ export const customTheme = extendTheme({
       ".chakra-modal__overlay": {
         zIndex: 10,
       },
-      ".slick-list": {
-        padding: "4px",
-      },
       ".rounded4": {
         borderRadius: "0.25rem",
         overflow: "hidden",
