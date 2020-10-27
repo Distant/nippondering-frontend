@@ -1,13 +1,25 @@
-import { Box, Heading, Text, Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/core'
+import { Box, Heading, Text, Breadcrumb, BreadcrumbItem, BreadcrumbLink, useMediaQuery } from '@chakra-ui/core'
 import { FaChevronRight } from 'react-icons/fa'
 import { shadows } from '../components/commonProps'
 
 const TradeLawRow = ({ name, content }: { name: string, content: string }) => {
+  const [md] = useMediaQuery("(min-width: 720px)")
   return (
-    <tr>
-      <td><Heading textStyle="cardTitle" minWidth={[0, "100px"]}>{name}</Heading></td>
-      <td><Text textStyle="cardBody">{content}</Text></td>
-    </tr>
+    <>
+      {!md ?
+        <>
+          <tr>
+            <td><Heading textStyle="cardTitle" minWidth={[0, "200px"]}>{name}</Heading></td>
+          </tr>
+          <tr>
+            <td><Text textStyle="cardBody">{content}</Text></td>
+          </tr>
+        </>
+        : <tr>
+          <td><Heading textStyle="cardTitle" minWidth={[0, "200px"]}>{name}</Heading></td>
+          <td><Text textStyle="cardBody">{content}</Text></td>
+        </tr>}
+    </>
   )
 }
 
