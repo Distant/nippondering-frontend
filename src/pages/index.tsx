@@ -74,7 +74,7 @@ const Index = ({ popTours, popLocations }: Props) => {
           mx="auto"
           pt={4}
           fontSize="1rem">
-          Need a new energetic friend to show you around in Japan? We offer private personalized tours mainly in the Kansai area (Osaka, Kyoto, Nara and Hyogo). We will not only be your guide, but also your friend who spices up your precious time in Japan!
+          Need a new energetic friend to show you around in Japan? We offer private personalized tours in the Kansai area (Osaka, Kyoto, Nara and Hyogo). We will not only be your guide, but also your friend who spices up your precious time in Japan!
           </Text>
 
         <Heading textStyle="sectionTitle" >Popular Tours</Heading>
