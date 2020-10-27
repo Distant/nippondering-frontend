@@ -12,9 +12,8 @@ type ResponsivePictureProps = {
   customNode?: ReactNode
 }
 
-const useWebp = false
-
-const replaceExtension = (p: string) => useWebp ? p.replace(/\.[^/.]+$/, ".webp") : p
+const useWebp = process.env.NEXT_PUBLIC_USE_WEBP == "true"
+const replaceExtension = (p: string, webp: boolean) => webp ? p.replace(/\.[^/.]+$/, ".webp") : p
 
 /**
  * 
@@ -24,18 +23,19 @@ const replaceExtension = (p: string) => useWebp ? p.replace(/\.[^/.]+$/, ".webp"
  */
 export const ResponsivePicture = ({ baseUrl, urls, breakpoints, webp, alt, className, ref, customNode }: ResponsivePictureProps) => {
   const media = breakpoints ? breakpoints : ["1440px", "1280", "800px"];
-
+  const wp = useWebp && webp
+  
   return (
     <picture>
       {urls && urls.map((url, i) => {
         return (
           <React.Fragment key={url}>
-            {webp && <source type="image/webp" media={media.length > i ? `(min-width: ${media[i]})` : ""} srcSet={replaceExtension(url)} />}
+            {wp && <source type="image/webp" media={media.length > i ? `(min-width: ${media[i]})` : ""} srcSet={replaceExtension(url, wp)} />}
             <source media={media.length > i ? `(min-width: ${media[i]})` : ""} srcSet={url} />
           </React.Fragment>
         )
       })}
-      {webp && <source type="image/webp" media="(min-width: 0)" srcSet={replaceExtension(baseUrl)} />}
+      {wp && <source type="image/webp" media="(min-width: 0)" srcSet={replaceExtension(baseUrl, wp)} />}
       {customNode ? customNode : <img
         ref={ref}
         className={className}
