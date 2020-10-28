@@ -18,16 +18,22 @@ export const customTheme = extendTheme({
       a: {
         color: "inherit",
         textDecoration: "none",
+        borderRadius:"4px"
       },
       "a:focus": {
         outline: "none",
+        boxShadow: "0 0 0 3px rgba(66,153,225,0.6)"
+      },
+
+      // add focus outline to div inside links
+      ".link-outline:focus > div": {
+        boxShadow: "0 0 0 3px rgba(66,153,225,0.6)"
       },
       "*, before, after": {
         boxSizing: "border-box",
       },
       ".js-focus-visible :focus:not([data-focus-visible-added])": {
         outline: "none",
-        boxShadow: "none"
       },
       ".background-pattern": {
         backgroundColor: "#f5f5f8",
@@ -161,8 +167,8 @@ export const customTheme = extendTheme({
       pt: { base: 4, md: 5 },
       pb: { base: 0, md: 2 },
       mt: "1em",
-      textAlign: { base: "center", md: "left" },
-      color: "#934aad",
+      textAlign: { base: "center", md: "center" },
+      color: "blue.800",
     },
     "sectionTitlePlain": {
       fontWeight: "bold",
@@ -172,7 +178,7 @@ export const customTheme = extendTheme({
       pl: "1em",
       mx: "1em",
       textAlign: "center",
-      color: "gray.600",
+      color: "blue.800",
 
     },
     "tourTitle": {
@@ -190,9 +196,11 @@ export const customTheme = extendTheme({
       fontWeight: "bold",
       fontSize: { base: "1.1rem", md: "1.1rem" },
       mx: 0,
-      p: "2",
+      px: "2",
+      pb: "1",
+      pt: "2",
       textAlign: "left",
-      color: "black",
+      color: "purple.500",
     },
     cardBody: {
       fontWeight: "normal",
@@ -294,7 +302,7 @@ export const customTheme = extendTheme({
   },
   breakpoints: breakpoints,
   fonts: {
-    body: "Raleway, sans-serif, -apple-system, BlinkMacSystemFont",
+    body: "Roboto, sans-serif, -apple-system, BlinkMacSystemFont",
     heading: "Raleway, sans-serif, -apple-system, BlinkMacSystemFont",
     mono: "Menlo, monospace",
   },

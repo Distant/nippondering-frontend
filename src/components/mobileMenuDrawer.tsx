@@ -35,11 +35,11 @@ const MobileMenuDrawer = ({ children, isOpen, placement, onOpen, onClose, finalF
       <DrawerOverlay>
         <DrawerContent>
           <DrawerCloseButton color="white" />
-          <DrawerHeader backgroundColor="#934aad" color="white">Menu</DrawerHeader>
+          <DrawerHeader backgroundColor="#934aad" color="white"></DrawerHeader>
 
           <DrawerBody backgroundColor="#934aad">
-            <Flex direction="column" justifyContent="center" alignItems="right">
-              { children }
+            <Flex direction="column" >
+              {children}
             </Flex>
           </DrawerBody>
         </DrawerContent>

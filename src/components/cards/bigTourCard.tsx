@@ -64,8 +64,8 @@ function BigTourCard({ tour }: Props) {
 
       </Box>
     </Link>
-    <Link href="/tour/[id]" as={`/tour/${tour.tourId}`}>
-      <Button {...ctaButtonProps} borderRadius={4} position="absolute" bottom="-25px" left="calc(50% - 51px)" mb={2} mr={1}>See Details</Button>
+    <Link href="/tour/[id]" as={`/tour/${tour.tourId}`} passHref>
+      <Button as="a" {...ctaButtonProps} borderRadius={4} position="absolute" bottom="-25px" left="calc(50% - 51px)" mb={2} mr={1}>See Details</Button>
     </Link>
   </Box>;
 }

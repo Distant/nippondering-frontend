@@ -82,7 +82,7 @@ const Index = ({ popTours, popLocations }: Props) => {
           {loaded && tours ? tours.map(((tour, i) => <TourCard key={tour.tourId} tour={tour} />)) : <Box minH="400px" />}
         </SimpleGrid>
         <Box w="100%" display="flex" justifyContent="center">
-          <Link href="/tours"><Button {...ctaButtonProps} mb={8} size="lg" >See all tours</Button></Link>
+          <Link href="/tours" passHref><Button as="a"{...ctaButtonProps} mb={8} size="lg" >See all tours</Button></Link>
         </Box>
 
         <Heading textStyle="sectionTitle" >Popular Locations</Heading>

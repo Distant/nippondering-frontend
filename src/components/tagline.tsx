@@ -1,4 +1,5 @@
-import { Box, Flex, Text, Heading, Avatar, Image, Stack, Button, Grid, GridProps } from '@chakra-ui/core'
+import Image from "next/image"
+import { Box, Flex, Text, Heading, Avatar, Image as ChakraImage, Stack, Button, Grid, GridProps } from '@chakra-ui/core'
 import { ctaButtonProps } from './commonProps'
 import useImageLoad from '../utilities/useImageLoad'
 import { ResponsivePicture } from './responsivePicture'
@@ -42,7 +43,7 @@ export const Tagline = ({ minimal }: { minimal?: boolean }) => {
       {<Box
         position="fixed"
         width="100%"
-        height="calc(50vh - 5rem)" minHeight="350px"
+        height="calc(50vh - 5rem + 10px)" minHeight="360px"
         zIndex={-10}
         marginTop="-10px" //remove weird blurry thing
         backgroundColor="#313658">
@@ -56,35 +57,35 @@ export const Tagline = ({ minimal }: { minimal?: boolean }) => {
         />
       </Box>}
       <Grid gridTemplateRows="repeat(3, 1fr)" height={minimal ? 0 : "calc(50vh - 5rem)"} maxHeight="500px" minHeight={minimal ? 0 : "350px"}>
-        <Flex gridRow={2} alignSelf="center" w="100%" direction="column" justify="space-around" align="center" p={[1, "auto", "auto"]} mx="auto" pb={4}>
+        <Flex gridRow={2} alignSelf="center" w="100%" direction="column" justify="space-around" align="center" p={[1, "auto", "auto"]} mx="auto">
           {!minimal && <>
-            <ResponsivePicture
-              baseUrl="/assets/logo2_alt_md.png"
-              webp
-              customNode={
-                <Image
-                  className="drop-shadow"
-                  ref={imgRef}
-                  transition="all 300ms ease-out"
-                  opacity={imgLoaded ? 100 : 0}
-                  loading="lazy"
-                  src="/assets/logo2_alt_md.png"
-                  height={minimal ? { base: "80px", md: "120px" } : { base: "80px", md: "120px" }}
-                  maxH={minimal ? "120px" : "120px"}
-                  alt="Nippondering" />
-              } />
+            <Box
+              height={{ base: "80px", md: "128px" }}
+              width={{ base: "313px", md: "500px" }}
+              maxH={minimal ? "128px" : "128px"}
+              opacity={1}
+              transition="all 300ms ease-out">
+              <Image
+                width="500px"
+                height="128px"
+                className="drop-shadow"
+                src="/assets/logo2_alt_md.png"
+                alt="Nippondering"
+                priority
+                sizes={"(max-width: 720) 313px, (min-width: 721px) 500px"} />
+            </Box>
 
-            <Heading
+            {/* <Heading
               as="p"
               className="tagline"
               mt={1}
               textStyle="tagline"
               textAlign="center"
-              transform="rotate(-4deg)">YOUR FRIENDS IN KANSAI !</Heading>
+              transform="rotate(-4deg)">YOUR FRIENDS IN KANSAI !</Heading> */}
 
             <Box w="100%" display="flex" justifyContent="center">
-              <Link href="/tours">
-                <Button {...ctaButtonProps} boxShadow="0px 6px 11px rgb(88 30 97 / 22%), 0 8px 20px rgb(44 9 70 / 15%)"
+              <Link href="/tours" passHref>
+                <Button as="a" {...ctaButtonProps} backgroundColor="#794797" boxShadow="0px 6px 11px rgb(88 30 97 / 22%), 0 8px 20px rgb(44 9 70 / 15%)"
                   _hover={{
                     boxShadow: "0px 6px 15px rgb(88 30 97 / 22%), 0 8px 28px rgb(44 9 70 / 15%)",
                     transform: "scale(1.12)"
@@ -93,7 +94,7 @@ export const Tagline = ({ minimal }: { minimal?: boolean }) => {
             </Box>
           </>}
         </Flex>
-        {!minimal && <BookingProcess gridRow={3} alignSelf="end" />}
+        {!minimal && <BookingProcess gridRow={3} alignSelf="end" display={{ base: "none", md: "initial" }} />}
       </Grid>
     </Box >
   )

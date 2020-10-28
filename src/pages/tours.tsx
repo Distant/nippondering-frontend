@@ -165,7 +165,7 @@ const Tours: React.FC<Props> = ({ tours, locations, location }: Props) => {
           </BreadcrumbItem>
         </Breadcrumb>
 
-        <Heading as="h1" textStyle="sectionTitle" fontSize="1.8rem" mx="0" p="0" >Tours We Offer</Heading>
+        <Heading as="h1" textStyle="sectionTitle" fontSize="1.8rem" m="0" p="0" >Tours We Offer</Heading>
 
         <Box maxWidth="200px" mt={4} mr={["auto", "auto", "0"]} ml="auto">
           <Select id="4" instanceId="5" inputId="6"

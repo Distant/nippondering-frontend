@@ -54,14 +54,14 @@ const Pricing = () => {
 
           <Heading as="h1" textStyle="sectionTitle">Pricing Information</Heading>
 
-          {loaded && pricingInfo &&
+          {!true && loaded && pricingInfo &&
             <Box layerStyle="alertBox">
-              <Heading textStyle="cardTitle" color="black" textAlign="center" fontWeight="bold" fontSize={{base: "1.5rem", md:"1.6rem"}}>Special Offer</Heading>
+              <Heading textStyle="cardTitle" color="black" textAlign="center" fontWeight="bold" fontSize={{ base: "1.5rem", md: "1.6rem" }}>Special Offer</Heading>
               <Text {...cardBodyProps} textAlign="center">
-                <Text as="sup" color="purple.500" fontSize={14}>{pricingInfo.currencySymbol}</Text>
+                {pricingInfo.currencySymbol}
                 <Text as="b" color="purple.500" fontSize={18}>{pricingInfo.discountedBaseHourlyRate.toLocaleString(pricingInfo.currencyCode, { maximumFractionDigits: 2, minimumFractionDigits: 2 })} </Text>
                 {"per group (price for up to 4 people), "}
-                <Text as="sup" color="purple.500" fontSize={14}>{pricingInfo.currencySymbol}</Text>
+                {pricingInfo.currencySymbol}
                 <Text as="b" color="purple.500" fontSize={18}>{pricingInfo.discountedAdditionalGuestHourlyRate.toLocaleString(pricingInfo.currencyCode, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}</Text>
                 {" for each additional guest"}
               </Text>

@@ -5,10 +5,11 @@ import { useHasMounted } from '../utilities/useHasMounted'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { logout } from '../login-service'
-import { Button, Box, Flex, Heading, Image, Text, useDisclosure, Grid } from '@chakra-ui/core'
+import { Button, Box, Flex, Heading, Text, useDisclosure, Grid, PseudoProps } from '@chakra-ui/core'
 import { currencyContext, CurrencyType } from '../currencyContext'
 import dynamic from 'next/dynamic'
 import { ResponsivePicture } from './responsivePicture'
+import Image from "next/image"
 
 type DrawerProps = {
   children: JSX.Element[],
@@ -29,109 +30,80 @@ type MenuLinkProps = {
   onClick?: () => void
 }
 
-const MenuLink = ({ text, isSelected, url, onClick }: MenuLinkProps) => {
+const hoverProps: any = {
+  content: `""`,
+  position: "absolute",
+  bottom: 0,
+  left: 2,
+  right: 2,
+  width: "calc(100%) - 4px",
+  opacity: 1,
+  borderBottom: "2px solid white"
+}
+
+const MenuLink = ({ text, isSelected, url }: MenuLinkProps) => {
   return (
-    <Link href={url} >
-      <Button
-        variant="unstyled"
-        transition="all 0.0s cubic-bezier(.08,.52,.52,1)"
+    <Link href={url} passHref>
+      <Box
+        as="a"
+        position="relative"
+        transition="box-shadow 100ms cubic-bezier(.08,.52,.52,1)"
         color="white"
-        borderRadius="0px"
-        mx={[1, 1, 2, 2]}
-        py={[3, 3, 0, 0]}
+        px={[1, 1, 2, 2]}
+        py={1}
         fontSize="16px"
         height="2rem"
         bg="#transparent"
         fontWeight="normal"
         _after={isSelected ? {
-          content: `""`,
-          position: "absolute",
-          bottom: "2px",
-          left: "0px",
-          width: "calc(100%)",
-          borderBottom: "2px solid white"
+          ...hoverProps
         } : {
-            transition: "all 30ms cubic-bezier(.08,.52,.52,1)",
-            content: `""`,
-            position: "absolute",
-            bottom: "2px",
-            left: "0px",
-            width: "calc(100%)",
-            opacity: 0,
-            borderBottom: "2px solid white"
+            transition: "all 50ms cubic-bezier(.08,.52,.52,1)",
+            ...hoverProps,
+            opacity: 0
           }}
-        _hover={{
-          _after: {
-            content: `""`,
-            position: "absolute",
-            bottom: "2px",
-            left: "0px",
-            width: "calc(100%)",
-            opacity: 1,
-            borderBottom: "2px solid white"
-          },
-        }}
-        _active={{
-          _after: {
-            content: `""`,
-            position: "absolute",
-            bottom: "2px",
-            left: "0px",
-            width: "calc(100%)",
-            opacity: 1,
-            borderBottom: "2px solid white"
-          },
-        }}
-        _focus={{
-          _after: {
-            content: `""`,
-            position: "absolute",
-            bottom: "2px",
-            left: "0px",
-            width: "calc(100%)",
-            opacity: 1,
-            borderBottom: "2px solid white"
-          },
-        }}>
+        _hover={{ _after: { ...hoverProps } }}
+        _active={{ _after: { ...hoverProps } }}
+        _focus={{ boxShadow:"none", _after: { ...hoverProps } }}>
         {text}
-      </Button>
+      </Box>
     </Link >)
 }
 
 const DrawerLink = ({ text, isSelected, url, onClick }: MenuLinkProps) => {
   return (
-    <Link href={url} >
-      <Button
-        variant="unstyled"
+    <Link href={url} passHref>
+      <Box
+        as="a"
+        position="relative"
         transition="all 0.0s cubic-bezier(.08,.52,.52,1)"
         color="white"
-        borderRadius="0px"
         mx={[1, 1, 2, 2]}
-        py={4}
+        py={2}
         fontSize="18px"
         fontWeight="500"
         bg="#transparent"
-        textAlign="right"
+        textAlign="left"
         _after={isSelected ? {
           content: `""`,
           position: "absolute",
-          bottom: "-4px",
-          left: "0px",
+          bottom: "2px",
+          left: 0,
           width: "calc(100%)",
           borderBottom: "2px solid white"
         } : {
             transition: "all 30ms cubic-bezier(.08,.52,.52,1)",
             content: `""`,
             position: "absolute",
-            bottom: "0",
-            left: "-4px",
+            bottom: "2px",
+            left: 0,
             width: "calc(100%)",
             opacity: 0,
             borderBottom: "2px solid white"
           }}
       >
         {text}
-      </Button>
+      </Box>
     </Link >)
 }
 
@@ -156,7 +128,7 @@ const customStyles: any = {
     backgroundColor: "transparent",
     ":hover": { borderColor: "white", cursor: "pointer" },
     div: {
-      ":first-of-type": {overflow: "initial"}
+      ":first-of-type": { overflow: "initial" }
     }
   }),
   singleValue: (provided: any, state: any) => {
@@ -240,12 +212,9 @@ const NipAppBar = () => {
         justifyContent="center"
         mx="auto"
       >
-        <ResponsivePicture
-          baseUrl={"/assets/logo2_alt_small.png"}
-          webp
-          customNode={
-            <Image loading="lazy" src="/assets/logo2_alt_small.png" maxH="42px" width="auto" left={"14px"} top={"10px"} alt="Nippondering" />
-          } />
+        <Box left={"14px"} top={"10px"}>
+          <Image src="/assets/logo2_alt_small.png" height={32} width={125} alt="Nippondering" priority />
+        </Box>
 
         <Flex display={["none", "none", "block"]} direction="row" justifySelf="center" justifyContent="center" alignItems="center">
           <MenuLink isSelected={isSelected("home")} text="Home" url="/" />
@@ -285,11 +254,15 @@ const NipAppBar = () => {
                   <Heading as="p" width="min-content" px={2} fontWeight="light" size="sm" color="white">Welcome {session.user}</Heading>
                 </Flex>
                 :
-                <Flex direction="row-reverse" alignItems="center">
-                  <Link href="/account/login">
-                    <Button color="white" maxHeight="3rem" border="0px" variant="unstyled">
-                      <Text mx="1rem" color="white">Login</Text>
-                    </Button>
+                <Flex direction="row-reverse" alignItems="center" height="100%">
+                  <Link href="/account/login" passHref>
+                    <Text
+                      as="a"
+                      color="white"
+                      maxHeight="3rem"
+                      border="0px"
+                      px={2}
+                      transition="box-shadow 100ms cubic-bezier(.08,.52,.52,1)">Login</Text>
                   </Link>
                 </Flex>
               }
@@ -320,11 +293,9 @@ const NipAppBar = () => {
               </Flex>
 
               :
-              <Flex direction="row-reverse" alignItems="center" pt={8}>
-                <Link href="/account/login">
-                  <Button color="white" maxHeight="3rem" border="0px" variant="unstyled">
-                    <Text mx={1} color="white">Login</Text>
-                  </Button>
+              <Flex alignItems="center" pt={8}>
+                <Link href="/account/login" passHref>
+                  <Text as="a" mx={1} color="white">Login</Text>
                 </Link>
               </Flex>
             }
@@ -332,7 +303,7 @@ const NipAppBar = () => {
         </Box>
 
       </Grid>
-    </Box>
+    </Box >
   )
   return (<AppbarMemo route={route} handleSelection={handleCurrencySelection} />)
 }

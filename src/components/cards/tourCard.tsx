@@ -14,42 +14,36 @@ function TourCard({ tour }: Props) {
   const hideSpinner = !mounted || imgLoaded || !tour.images[0];
 
   return (
-    <Box
-      h={["400px", "300px", "460px"]}
-      position="relative"
-      _last={{
-        display: { base: "none", sm: "none", lg: "inline-block" }
-      }}>
+    <Link href="/tour/[id]" as={`/tour/${tour.tourId}`} passHref>
+      <Box
+        as="a"
+        h={["400px", "300px", "460px"]}
+        position="relative"
+        _last={{
+          display: { base: "none", sm: "none", lg: "inline-block" }
+        }}
+        whiteSpace="pre-wrap"
+        className={"rounded4 imgScale"}
+        maxWidth={{ base: "450px" }}
+        transition="box-shadow 0.2s ease-out, opacity 250ms, transform 300ms ease-out"
+        backgroundColor="white"
+        //minWidth={{ base: "240px", md: "20px" }}
+        m={1}
+        mx="auto"
+        onMouseOver={() => setShadow(3)}
+        onMouseOut={() => setShadow(2)}
+        transform={`translate(${hideSpinner ? "0, 0" : "0, 100px"})`}
+        opacity={hideSpinner ? 100 : 0}
+        {...shadows[shadow]} >
 
-      {!hideSpinner &&
-        <Box position="absolute" left="calc(50% - 12px)" top="calc(50% - 12px)">
-          <Spinner />
-        </Box>}
+        {!hideSpinner &&
+          <Box position="absolute" left="calc(50% - 12px)" top="calc(50% - 12px)">
+            <Spinner />
+          </Box>}
 
-      <Link href="/tour/[id]" as={`/tour/${tour.tourId}`}>
-        <Button
-          variant="unstyled"
-          whiteSpace="pre-wrap"
-          className={"rounded4 imgScale"}
-          maxWidth={{ base: "450px" }}
-          transition="box-shadow 0.2s ease-out, opacity 250ms, transform 300ms ease-out"
-          backgroundColor="white"
-          //minWidth={{ base: "240px", md: "20px" }}
-          m={1}
-          mx="auto"
-          onMouseOver={() => setShadow(3)}
-          onMouseOut={() => setShadow(2)}
-          _hover={{
-            cursor: "pointer",
-          }}
-          h={["400px", "300px", "460px"]}
-          transform={`translate(${hideSpinner ? "0, 0" : "0, 100px"})`}
-          opacity={hideSpinner ? 100 : 0}
-          position="relative"
-          {...shadows[shadow]}
-        >
+        <Box w="100%" h="100%">
           <Box width="100%" height="50%" overflow="hidden" position="relative">
-            <Text as="section" className="overlay" background="black" opacity="0" position="absolute" width="100%" height="100%" zIndex="1" transition="opacity 200ms ease-out"/>
+            <Text as="section" className="overlay" background="black" opacity="0" position="absolute" width="100%" height="100%" zIndex="1" transition="opacity 200ms ease-out" />
             <Text as="p" className="overlay" opacity="0" color="white" position="absolute" width="100%" textAlign="center" top="50%" zIndex="2" transition="opacity 100ms ease-out">Read More</Text>
             <Image
               className="cover-image-full"
@@ -72,9 +66,11 @@ function TourCard({ tour }: Props) {
               </Text>
             </Box>
           </Flex>
-        </Button>
-      </Link>
-    </Box >);
+        </Box>
+
+      </Box >
+    </Link>);
+
 }
 
 export default TourCard

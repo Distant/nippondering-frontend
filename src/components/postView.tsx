@@ -44,8 +44,8 @@ const PostView = ({ post, preview }: Props) => {
             height={20}>
           </Box> : null}
       </Box>
-      {preview && <Link href={`/blog/${post.slug}-${post.postId}`}>
-        <Button {...ctaButtonProps} width="10em" position="absolute" bottom={-5} left="calc(50% - 80px)">Read More</Button>
+      {preview && <Link href={`/blog/${post.slug}-${post.postId}`} passHref>
+        <Button as="a" {...ctaButtonProps} width="10em" position="absolute" bottom={-5} left="calc(50% - 80px)">Read More</Button>
       </Link>}
     </Box>
   )

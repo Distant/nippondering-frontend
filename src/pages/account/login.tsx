@@ -56,15 +56,15 @@ const Login = () => {
                 {status && (<Text textStyle="cardBody" color="#ff0000" textDecor="bold" mb="1rem">{status.error}</Text>)}
                 <FormControl mb={4}>
                   <FormLabel textStyle="cardTitle" htmlFor="email" mb={0} fontWeight="normal">Email</FormLabel>
-                  <Input id="email" value={email} onChange={(t: React.ChangeEvent<HTMLInputElement>) => updateEmail(t.target.value)} autoComplete="email"/>
+                  <Input id="email" value={email} onChange={(t: React.ChangeEvent<HTMLInputElement>) => updateEmail(t.target.value)} autoComplete="email" />
                 </FormControl>
-                <FormControl >
+                <FormControl mb={4}>
                   <FormLabel textStyle="cardTitle" htmlFor="password" mb={0} fontWeight="normal">Password</FormLabel>
-                  <Input id="password" value={password} type="password" onChange={(t: React.ChangeEvent<HTMLInputElement>) => updatePassword(t.target.value)} autoComplete="current-password"/>
+                  <Input id="password" value={password} type="password" onChange={(t: React.ChangeEvent<HTMLInputElement>) => updatePassword(t.target.value)} autoComplete="current-password" />
                 </FormControl>
                 <Flex direction={{ base: "column", md: "row" }} justifyContent={{ md: "flex-end" }} mx="auto" >
-                  <Link href="/account/forgot_password">
-                    <Button {...primaryButtonOutline} border="none" color="gray.600" mx={2} fontWeight="normal">Forgot Password</Button>
+                  <Link href="/account/forgot_password" passHref>
+                    <Box as="a" border="none" alignSelf="center" color="gray.600" mx={2} fontWeight="normal">Forgot Password</Box>
                   </Link>
                   <Button {...primaryButtonSolid} type="submit" isLoading={sending} my={4}>{'Login'}</Button>
                 </Flex>
