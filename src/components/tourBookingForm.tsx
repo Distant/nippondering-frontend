@@ -151,6 +151,7 @@ const BookingForm = ({ tour }: { tour: TourFull }) => {
             <Box width="100%" pr={[0, 2, 4]}>
               <FormLabel htmlFor="adults" color="black">Adults *</FormLabel>
               <Field component={FormInput} type="number" name="adults" id="adults" />
+              <Text textStyle="cardBody" as="sub">*Note you may have fewer than 4 adults but the price is set at a minimum for 4 guests</Text> 
               <StyledError name="adults" />
             </Box>
             <Box width="100%">
