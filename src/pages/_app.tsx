@@ -11,6 +11,7 @@ import HelpButton from '../components/helpButton'
 import { customTheme } from '../theme'
 import { Tagline } from '../components/tagline'
 import { useRouter } from 'next/router'
+import LazyHydrate from "react-lazy-hydration";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -36,14 +37,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <meta name="description" content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!" />
         <meta charSet="utf-8" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" type="text/css"/>
+        <link rel="preload" as="image" type="image/webp" href="/assets/kobe_sm.webp"></link>
+        <link rel="preload" as="image" type="image/webp" href="/assets/logo2_alt_small.webp"></link>
+        <link rel="preload" as="image" type="image/webp" href="/assets/logo2_alt_md.webp"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,500;1,500&display=swap" rel="stylesheet" type="text/css" />
         <link rel="shortcut icon" type="image/png" href="/fav-io/favicon.png"></link>
         <link rel="apple-touch-icon" sizes="180x180" href="/fav-io/apple-touch-icon.png"></link>
         <link rel="icon" type="image/png" sizes="32x32" href="/fav-io/favicon-32x32.png"></link>
         <link rel="icon" type="image/png" sizes="16x16" href="/fav-io/favicon-16x16.png"></link>
-      </Head>
-      <Head>
         <meta property="og:title" content="Nippondering Tours" />
         <meta property="og:description" content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!" />
         <meta property="og:image" content="https://nippondering.com/meta_logo.png" />
@@ -53,21 +55,20 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta property="twitter:title" content="Nippondering Tours" />
         <meta property="twitter:description" content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!" />
         <meta property="twitter:image" content="https://nippondering.com/meta_logo.png" />
-        <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet" type="text/css"/>
       </Head>
       <ChakraProvider resetCSS theme={customTheme}>
         <currencyContext.Provider value={[currency, c => { c && setCurrency(c) }]}>
           <UserContext.Provider value={{ user: user, login: login, logout: logout }}>
             <Flex minHeight="calc(100vh)" flexDirection="column">
               <NipAppBar />
-              <Tagline minimal={router.pathname !== "/"}/>
+              <Tagline minimal={router.pathname !== "/"} />
               <Component {...pageProps} />
               <Box flexGrow={1} backgroundColor="#f5f5f8" />
               <Footer />
             </Flex>
           </UserContext.Provider>
         </currencyContext.Provider>
-        <HelpButton open={open} setOpen={setOpen} />
+        <LazyHydrate on="mouseenter"><HelpButton open={open} setOpen={setOpen} /></LazyHydrate>
       </ChakraProvider>
     </>
   )
