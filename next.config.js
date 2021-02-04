@@ -1,4 +1,4 @@
-const BrotliPlugin = require('brotli-webpack-plugin');
+ const BrotliPlugin = require('brotli-webpack-plugin');
 
 module.exports = {
   trailingSlash: true,
@@ -24,10 +24,11 @@ module.exports = {
     return config
   },
 }
-
-/* const withPreCompression = require('@moxy/next-pre-compression');
-
-module.exports = withBundleAnalyzer(withPreCompression({
+/* 
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+module.exports = withBundleAnalyzer({
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.plugins.push(new BrotliPlugin({
       asset: '[path].br[query]',
@@ -37,5 +38,5 @@ module.exports = withBundleAnalyzer(withPreCompression({
     }));
     return config
   }
-})); */
+});  */
 
