@@ -9,9 +9,10 @@ import { Button, Box, Flex, Heading, Text, useDisclosure, Grid, PseudoProps, Ima
 import { currencyContext, CurrencyType } from '../currencyContext'
 import dynamic from 'next/dynamic'
 import { ResponsivePicture } from './responsivePicture'
+import { shadows } from './commonProps';
 
 type DrawerProps = {
-  children: JSX.Element[],
+  children: React.ReactNode[],
   isOpen: boolean,
   placement: "right",
   onOpen: () => void,
@@ -63,7 +64,7 @@ const MenuLink = ({ text, isSelected, url }: MenuLinkProps) => {
           }}
         _hover={{ _after: { ...hoverProps } }}
         _active={{ _after: { ...hoverProps } }}
-        _focus={{ boxShadow:"none", _after: { ...hoverProps } }}>
+        _focus={{ boxShadow: "none", _after: { ...hoverProps } }}>
         {text}
       </Box>
     </Link >)
@@ -123,7 +124,7 @@ const customStyles: any = {
   }),
   control: (provided: any, state: any) => ({
     ...provided,
-    border: "2px solid white",
+    border: "none",
     backgroundColor: "transparent",
     ":hover": { borderColor: "white", cursor: "pointer" },
     div: {
@@ -143,26 +144,16 @@ const customStyles: any = {
   indicatorSeparator: () => { }
 }
 
+const useLogin = true
+
 const NipAppBar = () => {
   const router = useRouter()
   const route = router.pathname
   const isSelected = (path: string) => {
-    if (route.startsWith("/tour")) {
-      return path == "tours"
-    }
-
-    if (route.startsWith("/blog")) {
-      return path == "blog";
-    }
-
-    if (route == "/about") {
-      return path == "route"
-    }
-
-    if (route == "/pricing") {
-      return path == "pricing"
-    }
-
+    if (route.startsWith("/tour")) { return path == "tours" }
+    if (route.startsWith("/blog")) { return path == "blog"; }
+    if (route == "/about") { return path == "route" }
+    if (route == "/pricing") { return path == "pricing" }
     return path == "home"
   }
   const hasMounted = useHasMounted()
@@ -199,7 +190,7 @@ const NipAppBar = () => {
       position="sticky"
       top="0"
       bg="blue.800"
-      zIndex="10">
+      zIndex="10"
       boxShadow="0 6px 14px rgb(50 55 90 / 30%)">
       <Grid
         templateColumns={{ base: "1fr 1fr", md: "1fr 2fr 1fr" }}
@@ -242,7 +233,7 @@ const NipAppBar = () => {
               value={options.find(cur => cur.value == currency)}
             />
           </Box>
-          {hasMounted && session.user != null &&
+          {useLogin && hasMounted && session.user != null &&
             <Box display={["none", "none", "block"]}>
               {session.user != "" ?
                 <Flex direction="row-reverse" alignItems="center">
@@ -275,33 +266,35 @@ const NipAppBar = () => {
             placement="right"
             onOpen={onOpen}
             onClose={onClose}
-            finalFocusRef={btnRef}
-          >
+            finalFocusRef={btnRef}>
             <DrawerLink onClick={onClose} isSelected={isSelected("home")} text="Home" url="/" />
             <DrawerLink onClick={onClose} isSelected={isSelected("tours")} text="Tours" url="/tours" />
             <DrawerLink onClick={onClose} isSelected={isSelected("pricing")} text="Pricing" url="/pricing" />
             <DrawerLink onClick={onClose} isSelected={isSelected("blog")} text="Blog" url="/blog" />
             <DrawerLink onClick={onClose} isSelected={isSelected("about")} text="About" url="/about" />
-            {hasMounted && session.user != null && session.user != "" ?
-              <Flex direction="row-reverse" alignItems="center" mt={32}>
-                <Button color="white" maxHeight="3rem" border="2px" variant="unstyled" onClick={
-                  (e) => {
-                    e.preventDefault();
-                    handleLogout()
-                  }
-                }>
-                  <Text mx="2rem" color="white">Logout</Text>
-                </Button>
-                <Heading as="h4" pr="1rem" fontWeight="light" size="sm" color="white">Logged in as {session.user}</Heading>
-              </Flex>
+            {useLogin &&
+              <Box>
+                {hasMounted && session.user != null && session.user != "" ?
+                  <Flex direction="row-reverse" alignItems="center" mt={32}>
+                    <Button color="white" maxHeight="3rem" border="2px" variant="unstyled" onClick={
+                      (e) => {
+                        e.preventDefault();
+                        handleLogout()
+                      }
+                    }>
+                      <Text mx="2rem" color="white">Logout</Text>
+                    </Button>
+                    <Heading as="h4" pr="1rem" fontWeight="light" size="sm" color="white">Logged in as {session.user}</Heading>
+                  </Flex>
 
-              :
-              <Flex alignItems="center" pt={8}>
-                <Link href="/account/login" passHref>
-                  <Text as="a" mx={1} color="white">Login</Text>
-                </Link>
-              </Flex>
-            }
+                  :
+                  <Flex alignItems="center" pt={8}>
+                    <Link href="/account/login" passHref>
+                      <Text as="a" mx={1} color="white">Login</Text>
+                    </Link>
+                  </Flex>
+                }
+              </Box>}
           </MobileMenuDrawer>
         </Box>
 
