@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Box, Flex, Text, Heading } from '@chakra-ui/core'
-import { cardTitleProps, cardBodyProps } from './commonProps'
-import Image from "next/image"
+import { Box, Flex, Text, Heading, Image } from '@chakra-ui/core'
+import { ResponsivePicture } from './responsivePicture'
 
 const GuideProfile = ({ name, summary }: { name: string, summary: string }) => {
   const [loadImg, setLoadImg] = useState(false)
@@ -19,14 +18,7 @@ const GuideProfile = ({ name, summary }: { name: string, summary: string }) => {
           borderRadius="50%"
           border="2px solid #FFF"
           overflow="hidden">
-          <Image
-           className="cover-image-full"
-            loading="lazy"
-            alt={name}
-            src={`/assets/${name.toLowerCase()}.jpg`}
-            width="120px"
-            height="120px"
-          />
+          <ResponsivePicture className="cover-image-full" alt={name} webp baseUrl={`/assets/${name}.jpg`} />
         </Box>
       </Box>
       <Box>

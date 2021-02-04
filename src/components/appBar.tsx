@@ -5,11 +5,10 @@ import { useHasMounted } from '../utilities/useHasMounted'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { logout } from '../login-service'
-import { Button, Box, Flex, Heading, Text, useDisclosure, Grid, PseudoProps } from '@chakra-ui/core'
+import { Button, Box, Flex, Heading, Text, useDisclosure, Grid, PseudoProps, Image } from '@chakra-ui/core'
 import { currencyContext, CurrencyType } from '../currencyContext'
 import dynamic from 'next/dynamic'
 import { ResponsivePicture } from './responsivePicture'
-import Image from "next/image"
 
 type DrawerProps = {
   children: JSX.Element[],
@@ -212,9 +211,12 @@ const NipAppBar = () => {
         justifyContent="center"
         mx="auto"
       >
-        <Box left={"14px"} top={"10px"}>
-          <Image src="/assets/logo2_alt_small.png" height={32} width={125} alt="Nippondering" priority />
-        </Box>
+        <ResponsivePicture
+          baseUrl={"/assets/logo2_alt_small.png"}
+          webp
+          customNode={
+            <Image loading="lazy" src="/assets/logo2_alt_small.png" height="32px" width="125px" left={"14px"} top={"10px"} alt="Nippondering" />
+          } />
 
         <Flex display={["none", "none", "block"]} direction="row" justifySelf="center" justifyContent="center" alignItems="center">
           <MenuLink isSelected={isSelected("home")} text="Home" url="/" />

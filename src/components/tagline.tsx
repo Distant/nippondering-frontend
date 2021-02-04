@@ -1,5 +1,4 @@
-import Image from "next/image"
-import { Box, Flex, Text, Heading, Avatar, Image as ChakraImage, Stack, Button, Grid, GridProps } from '@chakra-ui/core'
+import { Box, Flex, Text, Heading, Avatar, Image, Stack, Button, Grid, GridProps } from '@chakra-ui/core'
 import { ctaButtonProps } from './commonProps'
 import useImageLoad from '../utilities/useImageLoad'
 import { ResponsivePicture } from './responsivePicture'
@@ -59,21 +58,22 @@ export const Tagline = ({ minimal }: { minimal?: boolean }) => {
       <Grid gridTemplateRows="repeat(3, 1fr)" height={minimal ? 0 : "calc(50vh - 5rem)"} maxHeight="500px" minHeight={minimal ? 0 : "350px"}>
         <Flex gridRow={2} alignSelf="center" w="100%" direction="column" justify="space-around" align="center" p={[1, "auto", "auto"]} mx="auto">
           {!minimal && <>
-            <Box
-              height={{ base: "80px", md: "128px" }}
-              width={{ base: "313px", md: "500px" }}
-              maxH={minimal ? "128px" : "128px"}
-              opacity={1}
-              transition="all 300ms ease-out">
-              <Image
-                width="500px"
-                height="128px"
-                className="drop-shadow"
-                src="/assets/logo2_alt_md.png"
-                alt="Nippondering"
-                priority
-                sizes={"(max-width: 720) 313px, (min-width: 721px) 500px"} />
-            </Box>
+            <ResponsivePicture
+              baseUrl="/assets/logo2_alt_md.png"
+              webp
+              customNode={
+                <Image
+                  className="drop-shadow"
+                  ref={imgRef}
+                  transition="all 300ms ease-out"
+                  loading="lazy"
+                  opacity={1}
+                  src="/assets/logo2_alt_md.png"
+                  h={{ base: "80px", md: "128px" }}
+                  w={{ base: "313px", md: "500px" }}
+                  maxH={minimal ? "128px" : "128px"}
+                  alt="Nippondering" />
+              } />
 
             {/* <Heading
               as="p"
