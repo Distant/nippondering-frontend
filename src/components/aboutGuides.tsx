@@ -18,7 +18,7 @@ const GuideProfile = ({ name, summary }: { name: string, summary: string }) => {
           borderRadius="50%"
           border="2px solid #FFF"
           overflow="hidden">
-          <ResponsivePicture className="cover-image-full" alt={name} webp baseUrl={`/assets/${name}.jpg`} />
+          <ResponsivePicture className="cover-image-full" alt={name} webp baseUrl={`/assets/${name.toLowerCase}.jpg`} />
         </Box>
       </Box>
       <Box>
