@@ -11,6 +11,9 @@ import useSWR from 'swr'
 import { url } from '../../utilities/fetchUtilities';
 import dynamic from 'next/dynamic';
 
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+
 const BookingForm = dynamic<{ tour: TourFull }>(import('../../components/tourBookingForm').then(mod => mod.default) as any, { ssr: false })
 
 type Params = {
@@ -113,7 +116,7 @@ const Tour: React.FC<Props> = ({ tour }: Props) => {
         <meta property="twitter:description" content={tour.shortDescription} />
       </Head>
 
-      <Box className="background-pattern">
+      <Box className={"background-pattern"}>
         <Box className="background-pattern-gradient" />
         <Box maxW="950px" width="100%" mx="auto" mb="50px" pt={{ base: 0, md: 4 }}>
           <Breadcrumb display={{ base: "none", md: "block" }} fontSize="0.8rem" p={2} color="#555" separator={< FaChevronRight color="#555" size="0.6rem" />}>
@@ -133,14 +136,13 @@ const Tour: React.FC<Props> = ({ tour }: Props) => {
 
           <Box backgroundColor="white" {...shadows[3]} borderRadius="4px" overflow="hidden">
             {tourDetail.images.length > 0 &&
-              <Slider dots={true} focusOnSelect={false} autoplay={true} adaptiveHeight={false} slidesToScroll={1} >
+              <Slider dots={true} focusOnSelect={false} autoplay={true} swipe={false} swipeToSlide={false} adaptiveHeight={false} slidesToScroll={1} >
                 {tourDetail.images && tourDetail.images.map(img =>
                   <Box
                     key={img.path}
                     height={["200px", "300px", "500px"]}
                     width="100%"
                     minHeight={["200px", "300px", "500px"]}
-                    p={{ md: 2 }}
                     _focus={{
                       outline: "none"
                     }}>

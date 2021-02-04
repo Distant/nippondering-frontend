@@ -18,7 +18,7 @@ export const customTheme = extendTheme({
       a: {
         color: "inherit",
         textDecoration: "none",
-        borderRadius:"4px"
+        borderRadius: "4px"
       },
       "a:focus": {
         outline: "none",
@@ -69,6 +69,7 @@ export const customTheme = extendTheme({
       ".tagline": {
         filter: "drop-shadow(2px 4px 4px rgba(46, 21, 48, 0.3))",
       },
+
       /* push overlay abover appbar */
       ".chakra-modal__overlay": {
         zIndex: 10,
@@ -93,6 +94,51 @@ export const customTheme = extendTheme({
         img: {
           transform: "scale(1.1)",
         }
+      },
+
+      // customize slick track buttons
+      ".slick-next": {
+        right: 0,
+        top: 0,
+        bottom: 0,
+        padding: "1rem",
+        background: "transparent",
+        opacity: 0.8,
+        height: "100%",
+        width: "25%",
+        transform: "none",
+      },
+      ".slick-next:hover, .slick-next:focus": {
+        background: "transparent",
+        opacity: 1,
+      },
+      ".slick-next::before": {
+        position: "absolute",
+        fontFamily: "inherit",
+        right: "20px",
+        opacity: 1
+      },
+      ".slick-prev": {
+        left: 0,
+        top: 0,
+        bottom: 0,
+        padding: "1rem",
+        background: "transparent",
+        opacity: 0.8,
+        height: "100%",
+        width: "25%",
+        transform: "none",
+        zIndex: 5,
+      },
+      ".slick-prev:hover, .slick-prev:focus": {
+        background: "transparent",
+        opacity: 1,
+      },
+      ".slick-prev::before": {
+        position: "absolute",
+        fontFamily: "inherit",
+        left: "20px",
+        opacity: 1
       }
     }
   },
@@ -141,7 +187,7 @@ export const customTheme = extendTheme({
       fontWeight: "500",
       color: "purple.500",
       textAlign: "center",
-      fontSize: ["2.5rem", "3rem", "3.5rem"],
+      fontSize: ["2rem", "2rem", "2.5rem"],
       fontStyle: "normal",
       fontFamily: 'Raleway, sans-serif',
       _after: {
@@ -164,7 +210,6 @@ export const customTheme = extendTheme({
     "sectionTitle": {
       fontWeight: "normal",
       fontSize: { base: "1.8rem", md: "1.8rem" },
-      pt: { base: 4, md: 5 },
       pb: { base: 0, md: 2 },
       mt: "1em",
       textAlign: { base: "center", md: "center" },
@@ -195,6 +240,7 @@ export const customTheme = extendTheme({
     cardTitle: {
       fontWeight: "bold",
       fontSize: { base: "1.1rem", md: "1.1rem" },
+      lineHeight: "1.5rem",
       mx: 0,
       px: "2",
       pb: "1",
@@ -233,7 +279,8 @@ export const customTheme = extendTheme({
     },
     locationCardTitle: {
       fontWeight: "bold",
-      fontSize: { base: "1.2rem", md: "1.2rem" },
+      fontSize: { base: "1.1rem", md: "1.1rem" },
+      lineHeight: "1.5rem",
       mx: 0,
       textAlign: "right",
       color: "white",
@@ -302,7 +349,7 @@ export const customTheme = extendTheme({
   },
   breakpoints: breakpoints,
   fonts: {
-    body: "Roboto, sans-serif, -apple-system, BlinkMacSystemFont",
+    body: "Raleway, sans-serif, -apple-system, BlinkMacSystemFont",
     heading: "Raleway, sans-serif, -apple-system, BlinkMacSystemFont",
     mono: "Menlo, monospace",
   },

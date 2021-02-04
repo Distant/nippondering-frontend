@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Layout from '../components/layout'
 import BlogPostPreviewType from '../types/blogPostPreview'
 import PostView from '../components/postView'
-import { Box, Flex, List, Text, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, PropsWithAs, Grid, Heading } from '@chakra-ui/core'
+import { Box, Flex, List, Text, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Grid, Heading } from '@chakra-ui/core'
 import { FaChevronRight } from 'react-icons/fa'
 import { useRouter } from 'next/router'
 import { primaryButtonOutline, primaryButtonText } from '../components/commonProps'

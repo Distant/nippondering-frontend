@@ -3,7 +3,7 @@ import * as React from 'react';
 import { sendResetRequest } from '../../login-service'
 import { Input, Button, FormControl, FormLabel, Box, Heading, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Text } from '@chakra-ui/core';
 import { FaChevronRight } from 'react-icons/fa';
-import { shadows, primaryButtonOutline, primaryButtonSolid } from '../../components/commonProps';
+import { shadows, primaryButtonSolid } from '../../components/commonProps';
 import RequestStatus from '../../types/requestStatus';
 
 const ForgotPassword = () => {
@@ -44,7 +44,7 @@ const ForgotPassword = () => {
               }
               <FormControl mb="0.5rem">
                 <FormLabel textStyle="cardTitle" htmlFor="email" mb={0} fontWeight="normal">Enter your email address:</FormLabel>
-                <Input id="email" value={email} onChange={(t: React.ChangeEvent<HTMLInputElement>) => updateEmail(t.target.value)} />
+                <Input id="email" value={email} onChange={(t) => updateEmail(t.target.value)} />
               </FormControl>
               <Flex direction={{ base: "column", md: "row" }} justifyContent={{ md: "flex-end" }} mx="auto" >
                 <Button {...primaryButtonSolid} type="submit" isLoading={sending} my={4} float="right">Send Request</Button>

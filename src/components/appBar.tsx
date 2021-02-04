@@ -200,6 +200,7 @@ const NipAppBar = () => {
       top="0"
       bg="blue.800"
       zIndex="10">
+      boxShadow="0 6px 14px rgb(50 55 90 / 30%)">
       <Grid
         templateColumns={{ base: "1fr 1fr", md: "1fr 2fr 1fr" }}
         maxWidth="1200px"

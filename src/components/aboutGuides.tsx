@@ -22,8 +22,8 @@ const GuideProfile = ({ name, summary }: { name: string, summary: string }) => {
         </Box>
       </Box>
       <Box>
-        <Heading {...cardTitleProps} color="white" mx={0}>{name}</Heading>
-        <Text {...cardBodyProps} color="#EEE" mx={0}>{summary}</Text>
+        <Heading textStyle="cardTitle" color="white" mx={0}>{name}</Heading>
+        <Text textStyle="cardBody" color="#EEE" mx={0}>{summary}</Text>
       </Box>
     </Flex>)
 }

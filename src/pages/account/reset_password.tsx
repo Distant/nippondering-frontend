@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import * as React from 'react';
 import { useRouter } from 'next/router'
-import Container from '../../components/container'
-import Header from '../../components/header'
 import { resetPassword } from '../../login-service'
-import { Input, Button, Text, FormControl, FormLabel, FormHelperText, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading } from '@chakra-ui/core';
+import { Input, Button, FormControl, FormLabel, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading } from '@chakra-ui/core';
 import RequestStatus from '../../types/requestStatus';
 import { FaChevronRight } from 'react-icons/fa';
 import { shadows, primaryButtonSolid } from '../../components/commonProps';
@@ -58,7 +56,7 @@ const ResetPassword = () => {
               }
               <FormControl mb="0.5rem">
                 <FormLabel textStyle="cardTitle" htmlFor="email" mb={0} fontWeight="normal">Enter new password</FormLabel>
-                <Input id="password" value={password} onChange={(t: React.ChangeEvent<HTMLInputElement>) => updatePassword(t.target.value)} />
+                <Input id="password" value={password} onChange={(t) => updatePassword(t.target.value)} />
               </FormControl>
               <Flex direction={{ base: "column", md: "row" }} justifyContent={{ md: "flex-end" }} mx="auto" >
                 <Button {...primaryButtonSolid} type="submit" isLoading={sending} my={4} float="right">Set Password</Button>

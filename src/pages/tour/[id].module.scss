@@ -1,0 +1,10 @@
+.slick-next {
+  right: 0px;
+  top: 0;
+  bottom: 0;
+  padding: "1rem";
+  &::before {
+    position: relative;
+    right: 10px;
+  }
+}

@@ -38,7 +38,7 @@ export const Tagline = ({ minimal }: { minimal?: boolean }) => {
 
   return (
     <Box w="100%" mt="0" borderBottom="4px solid" borderBottomColor="purple.600">
-      <Box position="fixed" width="100vw" height="50vh" minHeight="350px" zIndex={-8} background="linear-gradient(180deg,#3b416bcc,#934aad)" />
+      <Box position="fixed" width="100vw" height="50vh" minHeight="350px" zIndex={-8} background="linear-gradient(180deg,#3b416bcc,#934aadDD)" />
       {<Box
         position="fixed"
         width="100%"
@@ -49,7 +49,7 @@ export const Tagline = ({ minimal }: { minimal?: boolean }) => {
         <ResponsivePicture
           baseUrl="/assets/kobe_sm.jpg"
           urls={["/assets/kobe_op.jpg", "/assets/kobe_md.jpg"]}
-          breakpoints={["800px", "600px"]}
+          breakpoints={["1800px", "600px"]}
           className="cover-image-full blur-image"
           alt="Kobe"
           webp

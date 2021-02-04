@@ -1,15 +1,13 @@
 import { useState, useContext } from 'react';
 import * as React from 'react';
 import { useRouter } from 'next/router'
-import Container from '../../components/container'
-import Header from '../../components/header'
 import { UserContext } from '../../user-context'
 import Link from 'next/link'
 import { attemptLogin } from '../../login-service'
 import { Button, Input, FormControl, FormLabel, Box, Heading, Flex, Text, Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/core"
 import RequestStatus from '../../types/requestStatus';
 import { FaChevronRight } from 'react-icons/fa';
-import { primaryButtonOutline, primaryButtonSolid, shadows } from '../../components/commonProps';
+import { primaryButtonSolid, shadows } from '../../components/commonProps';
 
 const Login = () => {
   const router = useRouter()
@@ -60,7 +58,7 @@ const Login = () => {
                 </FormControl>
                 <FormControl mb={4}>
                   <FormLabel textStyle="cardTitle" htmlFor="password" mb={0} fontWeight="normal">Password</FormLabel>
-                  <Input id="password" value={password} type="password" onChange={(t: React.ChangeEvent<HTMLInputElement>) => updatePassword(t.target.value)} autoComplete="current-password" />
+                  <Input id="password" value={password} type="password" onChange={(t) => updatePassword(t.target.value)} autoComplete="current-password" />
                 </FormControl>
                 <Flex direction={{ base: "column", md: "row" }} justifyContent={{ md: "flex-end" }} mx="auto" >
                   <Link href="/account/forgot_password" passHref>
