@@ -14,6 +14,7 @@ import { AboutGuides } from "../components/aboutGuides";
 import { useHasMounted } from "../utilities/useHasMounted";
 import { url } from "../utilities/fetchUtilities";
 import LazyHydrate from "react-lazy-hydration";
+import * as React from "react";
 
 /**
  * Fetches and returns a popular tours and locations promise with the given currency query appended
@@ -70,6 +71,10 @@ const Index = ({ popTours, popLocations }: Props) => {
           content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!"
         />
         <meta name="twitter:image" content={url("meta_logo.png")} />
+        <meta name="google-site-verification" content={process.env.GOOGLE_SITE_VERIFICATION} />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script dangerouslySetInnerHTML={{ __html: `(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "${process.env.GOOGLE_AD_CLIENT}",enable_page_level_ads: true, overlays: {bottom: true}});` }}>
+        </script>
       </Head>
 
       <Container>
