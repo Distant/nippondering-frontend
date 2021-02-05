@@ -17,7 +17,7 @@ const Avatar = ({ name }: { name: string }) => {
       backgroundColor="#303659"
       borderRadius="50%"
       overflow="hidden">
-      <ResponsivePicture className="cover-image-full" alt={name} webp baseUrl={`/assets/${name.toLowerCase}.jpg`} />
+      <ResponsivePicture className="cover-image-full" alt={name} webp baseUrl={`/assets/${name.toLowerCase()}.jpg`} />
     </Box>
   )
 }
