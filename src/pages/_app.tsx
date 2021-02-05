@@ -12,6 +12,7 @@ import { customTheme } from '../theme'
 import { Tagline } from '../components/tagline'
 import { useRouter } from 'next/router'
 import LazyHydrate from "react-lazy-hydration";
+import {url} from "../utilities/fetchUtilities";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -48,13 +49,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" type="image/png" sizes="16x16" href="/fav-io/favicon-16x16.png"></link>
         <meta property="og:title" content="Nippondering Tours" />
         <meta property="og:description" content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!" />
-        <meta property="og:image" content="https://nippondering.com/meta_logo.png" />
-        <meta property="og:url" content="https://nippondering.com" />
+        <meta property="og:image" content={url("meta_logo.png")} />
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
         <meta property="twitter:card" content={"summary"} />
         <meta property="twitter:site" content="@nippondering" />
         <meta property="twitter:title" content="Nippondering Tours" />
         <meta property="twitter:description" content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!" />
-        <meta property="twitter:image" content="https://nippondering.com/meta_logo.png" />
+        <meta property="twitter:image" content={url("meta_logo.png")} />
       </Head>
       <ChakraProvider resetCSS theme={customTheme}>
         <currencyContext.Provider value={[currency, c => { c && setCurrency(c) }]}>

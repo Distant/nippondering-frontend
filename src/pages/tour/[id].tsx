@@ -8,7 +8,7 @@ import { CurrencyType } from '../../currencyContext'
 import { FaChevronRight, FaCheck, FaTimes } from 'react-icons/fa'
 import Head from 'next/head';
 import useSWR from 'swr'
-import { url } from '../../utilities/fetchUtilities';
+import {imgUrl, url} from '../../utilities/fetchUtilities';
 import dynamic from 'next/dynamic';
 
 import "slick-carousel/slick/slick.css"
@@ -95,7 +95,7 @@ type BookingModel = {
 
 const Tour: React.FC<Props> = ({ tour }: Props) => {
 
-  const { data: tourDetail } = useCurrencyEffect<TourFull>(currency => `https://nippondering.com/api/tours/${tour.tourId}/detail?currency=${currency}`, fetchTourTest, tour, (d1, d2) => d1.price.currencyCode == d2.price.currencyCode)
+  const { data: tourDetail } = useCurrencyEffect<TourFull>(currency => url(`api/tours/${tour.tourId}/detail?currency=${currency}`), fetchTourTest, tour, (d1, d2) => d1.price.currencyCode == d2.price.currencyCode)
 
   return (
     <>
@@ -106,10 +106,10 @@ const Tour: React.FC<Props> = ({ tour }: Props) => {
         <meta property="og:description" content={tour.shortDescription} />
         {(tour.images && tour.images[0]) &&
           <>
-            <meta property="og:image" content={`https://img.nippondering.com/${tour.images[0].path}_thumb.jpg`} />
-            <meta property="twitter:image" content={`https://img.nippondering.com/${tour.images[0].path}_thumb.jpg`} />
+            <meta property="og:image" content={imgUrl(`${tour.images[0].path}_thumb.jpg`)} />
+            <meta property="twitter:image" content={imgUrl(`${tour.images[0].path}_thumb.jpg`)} />
           </>}
-        <meta property="og:url" content={`https://nippondering.com/tours/${tour.tourId}`} />
+        <meta property="og:url" content={url("tours/${tour.tourId}")} />
         <meta property="twitter:card" content={"summary_large_image"} />
         <meta property="twitter:site" content="@nippondering" />
         <meta property="twitter:title" content={`${tour.title} - Nippondering Tours`} />
@@ -148,7 +148,7 @@ const Tour: React.FC<Props> = ({ tour }: Props) => {
                     }}>
                     <Image
                       loading="lazy"
-                      src={"https://img.nippondering.com/" + img.path + ".jpg"}
+                      src={imgUrl(img.path + ".jpg")}
                       width="100%" pb="40%"
                       objectFit="cover"
                       alt={img.description} />

@@ -60,8 +60,8 @@ const Index = ({ popTours, popLocations }: Props) => {
           property="og:description"
           content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!"
         />
-        <meta property="og:image" content="https://nippondering.com/meta_logo.png" />
-        <meta property="og:url" content="https://nippondering.com" />
+        <meta property="og:image" content={url("meta_logo.png")} />
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
         <meta name="twitter:card" content={"summary"} />
         <meta name="twitter:site" content="@nippondering" />
         <meta name="twitter:title" content="Nippondering Tours" />
@@ -69,7 +69,7 @@ const Index = ({ popTours, popLocations }: Props) => {
           name="twitter:description"
           content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!"
         />
-        <meta name="twitter:image" content="https://nippondering.com/meta_logo.png" />
+        <meta name="twitter:image" content={url("meta_logo.png")} />
       </Head>
 
       <Container>

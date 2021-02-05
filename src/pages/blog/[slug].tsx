@@ -7,6 +7,7 @@ import BlogPostPreviewType from '../../types/blogPostPreview'
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/core'
 import PostView from '../../components/postView'
 import { FaChevronRight } from 'react-icons/fa'
+import {url} from "../../utilities/fetchUtilities";
 
 type Params = {
   params: {
@@ -16,7 +17,7 @@ type Params = {
 
 export async function getStaticProps({ params }: Params) {
   const s = params.slug.split("-");
-  const res = await fetch(`https://nippondering.com/api/posts/${s[s.length - 1]}/detail`);
+  const res = await fetch(url(`api/posts/${s[s.length - 1]}/detail`));
   const post: BlogPostFull = await res.json();
 
   return {
@@ -33,7 +34,7 @@ type BlogPostList = {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("https://nippondering.com/api/posts/list");
+  const res = await fetch(url("api/posts/list"));
   const posts: BlogPostList = await res.json();
 
   return {
@@ -44,15 +45,6 @@ export async function getStaticPaths() {
         },
       }
     }),
-    fallback: false,
-  }
-
-  return {
-    paths: [{
-      params: {
-        slug: "a-history-of-homosexuality-in-japan-when-being-gay-was-nothing-special-9"
-      }
-    }],
     fallback: false,
   }
 }
@@ -73,13 +65,13 @@ const Post = ({ post }: Props) => {
         <title>{`${post.title} - Nippondering Blog`} </title>
         <meta property="og:title" content={`Nippondering Blog`} />
         <meta property="og:description" content={post.title} />
-        <meta property="og:image" content={`content="https://nippondering.com/meta_logo.png"`} />
-        <meta property="og:url" content={`https://nippondering.com/blog/${post.slug}-${post.postId}`} />
+        <meta property="og:image" content={url("meta_logo.png")} />
+        <meta property="og:url" content={url(`blog/${post.slug}-${post.postId}`)} />
         <meta property="twitter:card" content={"summary_large_image"} />
         <meta property="twitter:site" content="@nippondering" />
         <meta property="twitter:title" content={`Nippondering Blog`} />
         <meta property="twitter:description" content={post.title} />
-        <meta property="twitter:image" content={`content="https://nippondering.com/meta_logo.png"`} />
+        <meta property="twitter:image" content={url("meta_logo.png")} />
       </Head>
 
       <Container>
