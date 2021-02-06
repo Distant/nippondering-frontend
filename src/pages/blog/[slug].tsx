@@ -8,6 +8,7 @@ import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/core
 import PostView from '../../components/postView'
 import { FaChevronRight } from 'react-icons/fa'
 import {url} from "../../utilities/fetchUtilities";
+import 'whatwg-fetch';
 
 type Params = {
   params: {

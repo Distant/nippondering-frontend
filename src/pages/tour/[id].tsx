@@ -9,6 +9,7 @@ import { FaChevronRight, FaCheck, FaTimes } from 'react-icons/fa'
 import Head from 'next/head';
 import useSWR from 'swr'
 import {imgUrl, url} from '../../utilities/fetchUtilities';
+import 'whatwg-fetch';
 import dynamic from 'next/dynamic';
 
 import "slick-carousel/slick/slick.css"

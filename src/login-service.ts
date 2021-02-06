@@ -1,4 +1,5 @@
 import {url} from "./utilities/fetchUtilities";
+import 'whatwg-fetch';
 
 export type LoginModel = {
   email: string,
