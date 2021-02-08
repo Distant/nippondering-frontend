@@ -42,7 +42,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel="preload" as="image" type="image/webp" href="/assets/kobe_sm.webp"></link>
         <link rel="preload" as="image" type="image/webp" href="/assets/logo2_alt_small.webp"></link>
         <link rel="preload" as="image" type="image/webp" href="/assets/logo2_alt_md.webp"></link>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,500;1,500&display=swap" rel="stylesheet" type="text/css" />
         <link rel="shortcut icon" type="image/png" href="/fav-io/favicon.png"></link>
         <link rel="apple-touch-icon" sizes="180x180" href="/fav-io/apple-touch-icon.png"></link>
