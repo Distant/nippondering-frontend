@@ -1,5 +1,3 @@
-import 'whatwg-fetch';
-
 /**
  * Returns the path prepended with the environment specified domain
  */

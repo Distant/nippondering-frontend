@@ -9,7 +9,6 @@ import { FaChevronRight, FaCheck, FaTimes } from 'react-icons/fa'
 import Head from 'next/head';
 import useSWR from 'swr'
 import {imgUrl, url} from '../../utilities/fetchUtilities';
-import 'whatwg-fetch';
 import dynamic from 'next/dynamic';
 
 import "slick-carousel/slick/slick.css"
@@ -36,7 +35,8 @@ export async function getStaticProps({ params }: Params) {
   return {
     props: {
       tour: tour
-    }
+    },
+    revalidate: process.env.NEXTJS_REVALIDATE_SECONDS,
   }
 }
 
@@ -58,7 +58,7 @@ export async function getStaticPaths() {
         },
       }
     }),
-    fallback: false,
+    fallback: 'blocking',
   }
 
   /*   return {

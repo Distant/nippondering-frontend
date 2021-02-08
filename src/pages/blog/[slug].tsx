@@ -8,7 +8,6 @@ import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/core
 import PostView from '../../components/postView'
 import { FaChevronRight } from 'react-icons/fa'
 import {url} from "../../utilities/fetchUtilities";
-import 'whatwg-fetch';
 
 type Params = {
   params: {
@@ -24,7 +23,8 @@ export async function getStaticProps({ params }: Params) {
   return {
     props: {
       post
-    }
+    },
+    revalidate: process.env.NEXTJS_REVALIDATE_SECONDS,
   }
 }
 
@@ -46,7 +46,7 @@ export async function getStaticPaths() {
         },
       }
     }),
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 

@@ -61,6 +61,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <script dangerouslySetInnerHTML={{ __html: `(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "${process.env.GOOGLE_AD_CLIENT}",enable_page_level_ads: true, overlays: {bottom: true}});` }}>
         </script>
+
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_GTAG_ID}`}></script>
+        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${process.env.GOOGLE_GTAG_ID}');` }}>
+        </script>
+
+        <script src="polyfill.min.js"></script>
       </Head>
       <ChakraProvider resetCSS theme={customTheme}>
         <currencyContext.Provider value={[currency, c => { c && setCurrency(c) }]}>

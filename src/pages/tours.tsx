@@ -23,7 +23,8 @@ async function fetchTours(currency?: string) {
     props: {
       tours: tours.items,
       locations: locations
-    }
+    },
+    revalidate: process.env.NEXTJS_REVALIDATE_SECONDS,
   }
 }
 
@@ -153,10 +154,6 @@ const Tours: React.FC<Props> = ({ tours, locations, location }: Props) => {
         <meta property="twitter:title" content="Nippondering Tours" />
         <meta property="twitter:description" content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!" />
         <meta property="twitter:image" content={url("meta_logo.png")} />
-        <meta name="google-site-verification" content={process.env.GOOGLE_SITE_VERIFICATION} />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script dangerouslySetInnerHTML={{ __html: `(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "${process.env.GOOGLE_AD_CLIENT}",enable_page_level_ads: true, overlays: {bottom: true}});` }}>
-        </script>
       </Head>
       
       <Container>

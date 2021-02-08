@@ -11,7 +11,6 @@ import Link from 'next/link'
 import { BlogCategoryLink } from '../components/blogCategoryLink'
 import useSWR from 'swr'
 import Container from '../components/container'
-import 'whatwg-fetch';
 
 type BlogPostList = {
   pageIndex: number
@@ -27,7 +26,8 @@ export async function getStaticProps() {
     props: {
       posts: posts,
       totalPages: list.totalPages
-    }
+    },
+    revalidate: process.env.NEXTJS_REVALIDATE_SECONDS,
   }
 }
 
