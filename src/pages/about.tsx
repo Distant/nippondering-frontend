@@ -32,7 +32,7 @@ const About = () => {
               <BreadcrumbLink href="/">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/pricing">Pricing</BreadcrumbLink>
+              <BreadcrumbLink href="/about">About</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
 
