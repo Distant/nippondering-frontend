@@ -14,6 +14,7 @@ import { AboutGuides } from "../components/aboutGuides";
 import { useHasMounted } from "../utilities/useHasMounted";
 import { url } from "../utilities/fetchUtilities";
 import LazyHydrate from "react-lazy-hydration";
+import * as React from "react";
 
 /**
  * Fetches and returns a popular tours and locations promise with the given currency query appended
@@ -35,6 +36,7 @@ export async function getStaticProps() {
       popTours: tours,
       popLocations: locations,
     },
+    revalidate: process.env.NEXTJS_REVALIDATE_SECONDS,
   };
 }
 
@@ -53,25 +55,6 @@ const Index = ({ popTours, popLocations }: Props) => {
 
   return (
     <>
-      <Head>
-        <title>Nippondering Tours - Your Friends in Kansai</title>
-        <meta property="og:title" content="Nippondering Tours" />
-        <meta
-          property="og:description"
-          content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!"
-        />
-        <meta property="og:image" content="https://nippondering.com/meta_logo.png" />
-        <meta property="og:url" content="https://nippondering.com" />
-        <meta name="twitter:card" content={"summary"} />
-        <meta name="twitter:site" content="@nippondering" />
-        <meta name="twitter:title" content="Nippondering Tours" />
-        <meta
-          name="twitter:description"
-          content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!"
-        />
-        <meta name="twitter:image" content="https://nippondering.com/meta_logo.png" />
-      </Head>
-
       <Container>
         <Text
           color="blue"

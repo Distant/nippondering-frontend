@@ -1,3 +1,5 @@
+import {url} from "./utilities/fetchUtilities";
+
 export type LoginModel = {
   email: string,
   password: string,
@@ -6,7 +8,7 @@ export type LoginModel = {
 
 export function attemptLogin(loginModel: LoginModel, onSuccess: (name: string) => void, onError: (e: any) => void) {
   fetch(new Request(
-    'https://localhost:44370/api/account/login',
+      url('api/account/login'),
     {
       method: "POST",
       body: JSON.stringify(loginModel),
@@ -25,7 +27,7 @@ export function attemptLogin(loginModel: LoginModel, onSuccess: (name: string) =
 
 export function logout() {
   return fetch(new Request(
-    'https://localhost:44370/api/account/logout',
+      url('api/account/logout'),
     {
       method: "POST",
       credentials: 'include',
@@ -36,7 +38,7 @@ export function logout() {
 
 export function getSession(onSuccess: (s: string) => void, onError: (e: any) => void) {
   fetch(new Request(
-    'https://localhost:44370/api/account/session',
+    url('api/account/session'),
     {
       method: "GET",
       credentials: 'include',
@@ -50,7 +52,7 @@ export function getSession(onSuccess: (s: string) => void, onError: (e: any) => 
 
 export function sendResetRequest(email: string, onSuccess: () => void, onError: (e: any) => void) {
   fetch(new Request(
-    'https://localhost:44370/api/Account/ForgotPassword',
+    url('api/Account/ForgotPassword'),
     {
       method: "POST",
       body: JSON.stringify({ email: email }),
@@ -73,7 +75,7 @@ type resetModel = {
 
 export function resetPassword(data: resetModel, onSuccess: () => void, onError: (e: any) => void) {
   fetch(new Request(
-    'https://localhost:44370/api/Account/ResetPassword',
+    url('api/Account/ResetPassword'),
     {
       method: "POST",
       body: JSON.stringify(data),

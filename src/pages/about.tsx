@@ -17,7 +17,7 @@ const Avatar = ({ name }: { name: string }) => {
       backgroundColor="#303659"
       borderRadius="50%"
       overflow="hidden">
-      <ResponsivePicture className="cover-image-full" alt={name} webp baseUrl={`/assets/${name}.jpg`} />
+      <ResponsivePicture className="cover-image-full" alt={name} webp baseUrl={`/assets/${name.toLowerCase()}.jpg`} />
     </Box>
   )
 }
@@ -32,7 +32,7 @@ const About = () => {
               <BreadcrumbLink href="/">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/pricing">Pricing</BreadcrumbLink>
+              <BreadcrumbLink href="/about">About</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
 

@@ -26,7 +26,8 @@ export async function getStaticProps() {
     props: {
       posts: posts,
       totalPages: list.totalPages
-    }
+    },
+    revalidate: process.env.NEXTJS_REVALIDATE_SECONDS,
   }
 }
 

@@ -12,6 +12,8 @@ import { customTheme } from '../theme'
 import { Tagline } from '../components/tagline'
 import { useRouter } from 'next/router'
 import LazyHydrate from "react-lazy-hydration";
+import {url} from "../utilities/fetchUtilities";
+import * as React from "react";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -40,7 +42,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel="preload" as="image" type="image/webp" href="/assets/kobe_sm.webp"></link>
         <link rel="preload" as="image" type="image/webp" href="/assets/logo2_alt_small.webp"></link>
         <link rel="preload" as="image" type="image/webp" href="/assets/logo2_alt_md.webp"></link>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,500;1,500&display=swap" rel="stylesheet" type="text/css" />
         <link rel="shortcut icon" type="image/png" href="/fav-io/favicon.png"></link>
         <link rel="apple-touch-icon" sizes="180x180" href="/fav-io/apple-touch-icon.png"></link>
@@ -48,13 +49,18 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" type="image/png" sizes="16x16" href="/fav-io/favicon-16x16.png"></link>
         <meta property="og:title" content="Nippondering Tours" />
         <meta property="og:description" content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!" />
-        <meta property="og:image" content="https://nippondering.com/meta_logo.png" />
-        <meta property="og:url" content="https://nippondering.com" />
+        <meta property="og:image" content={url("meta_logo.png")} />
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
         <meta property="twitter:card" content={"summary"} />
         <meta property="twitter:site" content="@nippondering" />
         <meta property="twitter:title" content="Nippondering Tours" />
         <meta property="twitter:description" content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!" />
-        <meta property="twitter:image" content="https://nippondering.com/meta_logo.png" />
+        <meta property="twitter:image" content={url("meta_logo.png")} />
+        <meta name="google-site-verification" content={process.env.GOOGLE_SITE_VERIFICATION} />
+
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_GTAG_ID}`}></script>
+        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${process.env.GOOGLE_GTAG_ID}');` }}>
+        </script>
       </Head>
       <ChakraProvider resetCSS theme={customTheme}>
         <currencyContext.Provider value={[currency, c => { c && setCurrency(c) }]}>

@@ -16,7 +16,8 @@ async function fetchTours(currency?: string) {
     props: {
       tours: tours.items,
       locations: locations
-    }
+    },
+    revalidate: process.env.NEXTJS_REVALIDATE_SECONDS,
   }
 }
 
@@ -36,7 +37,7 @@ export async function getStaticPaths() {
         },
       }
     }),
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 

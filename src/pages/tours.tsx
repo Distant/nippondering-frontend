@@ -23,7 +23,8 @@ async function fetchTours(currency?: string) {
     props: {
       tours: tours.items,
       locations: locations
-    }
+    },
+    revalidate: process.env.NEXTJS_REVALIDATE_SECONDS,
   }
 }
 
@@ -86,18 +87,18 @@ const TourListCard = ({ tour, showPrice }: { tour: TourPreview, showPrice?: bool
 
 type LocationOption = { value: string, label: string }
 const locationDropdownStyle: any = {
-  control: (provided: Styles, state: any) => ({
+  control: (provided: Styles<LocationOption, boolean>, state: any) => ({
     ...provided,
     border: "1px solid #934aad",
     ":hover": { border: "1px solid white", },
     cursor: "pointer",
   }),
-  singleValue: (provided: Styles, state: any) => {
+  singleValue: (provided: Styles<LocationOption, boolean>, state: any) => {
     const opacity = state.isDisabled || state.isFocused ? 0.5 : 1;
     const transition = 'opacity 300ms';
     return { ...provided, opacity, transition };
   },
-  dropdownIndicator: (provided: Styles) => ({
+  dropdownIndicator: (provided: Styles<LocationOption, boolean>) => ({
     ...provided,
   }),
   indicatorSeparator: () => { }
@@ -120,7 +121,7 @@ const Tours: React.FC<Props> = ({ tours, locations, location }: Props) => {
     })), { value: "all", label: "All Locations" }]
   }, [locations])
 
-  const routeToLocation = useCallback((s: ValueType<LocationOption>, _: ActionMeta<LocationOption>) => {
+  const routeToLocation = useCallback((s: ValueType<LocationOption, boolean>, _: ActionMeta<LocationOption>) => {
     const location = s as LocationOption
     if (location) {
       switch (location.value) {
@@ -146,13 +147,13 @@ const Tours: React.FC<Props> = ({ tours, locations, location }: Props) => {
         <title>{`Tours in ${selectedLocation == "all" ? "Kansai" : locations.find((l) => l.slug == selectedLocation)?.name} - Nippondering Tours`}</title>
         <meta property="og:title" content="Nippondering Tours - Your Friends in Kansai" />
         <meta property="og:description" content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!" />
-        <meta property="og:image" content="https://nippondering.com/meta_logo.png" />
-        <meta property="og:url" content="https://nippondering.com" />
+        <meta property="og:image" content={url("meta_logo.png")} />
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
         <meta property="twitter:card" content={"summary_large_image"} />
         <meta property="twitter:site" content="@nippondering" />
         <meta property="twitter:title" content="Nippondering Tours" />
         <meta property="twitter:description" content="Experience Japan like a local with a private tour in the Kansai region. Choose from a selection of tours run by experienced and eager tour guides. Kyoto, Osaka, Nara and more!" />
-        <meta property="twitter:image" content="https://nippondering.com/meta_logo.png" />
+        <meta property="twitter:image" content={url("meta_logo.png")} />
       </Head>
       
       <Container>

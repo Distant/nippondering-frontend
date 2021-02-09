@@ -23,6 +23,15 @@ module.exports = {
     // Important: return the modified config
     return config
   },
+  async redirects() {
+    return [
+      {
+        source: '/tours/locations/:slug',
+        destination: '/tours/location/:slug',
+        permanent: true,
+      },
+    ]
+  },
 }
 /* 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
