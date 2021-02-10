@@ -17,7 +17,7 @@ async function fetchTours(currency?: string) {
       tours: tours.items,
       locations: locations
     },
-    revalidate: process.env.NEXTJS_REVALIDATE_SECONDS,
+    revalidate: parseInt(process.env.NEXT_REVALIDATE_SECONDS ?? "1", 10),
   }
 }
 

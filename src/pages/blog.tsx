@@ -27,7 +27,7 @@ export async function getStaticProps() {
       posts: posts,
       totalPages: list.totalPages
     },
-    revalidate: process.env.NEXTJS_REVALIDATE_SECONDS,
+    revalidate: parseInt(process.env.NEXT_REVALIDATE_SECONDS ?? "1", 10),
   }
 }
 
