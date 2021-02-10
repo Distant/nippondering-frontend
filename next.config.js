@@ -23,11 +23,11 @@ module.exports = {
     // Important: return the modified config
     return config
   },
-  async redirects() {
+  redirects: async () => {
     return [
       {
-        source: '/tours/locations/:slug',
-        destination: '/tours/location/:slug',
+        source: '/tours/locations/:slug/',
+        destination: '/tours/location/:slug/',
         permanent: true,
       },
     ]
