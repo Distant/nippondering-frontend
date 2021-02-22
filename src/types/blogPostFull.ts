@@ -1,51 +1,37 @@
-
 type PostTag = {
-  tag: string
-  postCount: number
-}
+  tag: string;
+  postCount: number;
+};
 
-type PostImage = {
-  imageID : string
-  creatorId: string
-  postId: number
-  path: string
+export type PostImage = {
+  imageID: string;
+  creatorId: string;
+  postId: number;
+  path: string;
+  hasWebp: boolean;
+  webpConversionFailed: boolean;
 
-  created: Date
-  lastChanged: Date
-}
-
-enum PostStatus {
-  Published,
-  Unpublished,
-  Deleted
-}
-
-const parsePostStatus = (status : string) => {
-  switch (status) {
-    case "Published": return PostStatus.Published;
-    case "Unpublished": return PostStatus.Unpublished;
-    case "Deleted": return PostStatus.Deleted;
-  }
-  return PostStatus.Unpublished
-}
+  created: string;
+  lastChanged: string;
+};
 
 type BlogPostFull = {
-  postId: number
-  //OwnerId: string
-  owner: string
-  ownerImage: string
-  slug: string
-  title: string
-  status: PostStatus
-  content: string
-  tags: string[]
-  image: string
+  postId: number;
+  ownerId: string;
+  owner: string;
+  ownerImage?: string;
+  slug: string;
+  title: string;
+  status: "Published" | "Unlisted" | "Deleted";
+  content: string;
+  tags: string[];
+  images: PostImage[];
 
-  created: string
-  lastChanged: string
-  published?: string
+  created: string;
+  lastChanged: string;
+  published?: string;
 
-  summary: string
-}
+  summary: string;
+};
 
-export default BlogPostFull
+export default BlogPostFull;
