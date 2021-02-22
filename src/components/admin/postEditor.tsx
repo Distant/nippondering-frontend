@@ -51,7 +51,7 @@ const Tags = (props: { allTags: string[]; selectedTags: string[]; updateTags: (t
       <HStack>
         {props.selectedTags &&
           props.selectedTags.map((tag: string) => (
-            <HStack backgroundColor={"blue.100"} px={2} borderRadius={8}>
+            <HStack backgroundColor={"blue.100"} px={2} borderRadius={8} key={tag}>
               <Text ml={2}>{tag}</Text>
               <Button {...primaryButtonText} m={0} p={0} onClick={() => removeTag(tag)}>
                 x
