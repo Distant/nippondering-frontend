@@ -16,6 +16,7 @@ import {
   Text,
   UnorderedList,
   HStack,
+  Box,
 } from "@chakra-ui/core";
 import React, { useRef } from "react";
 import ReactMarkdown from "react-markdown";
@@ -240,9 +241,6 @@ const PostEditor = ({ post, stopEditing }: Props) => {
           <Button {...primaryButtonOutline} onClick={(e) => insertAtSelection("![]()")}>
             img
           </Button>
-          <Button {...primaryButtonOutline} onClick={(e) => insertAtSelection("#### **")}>
-            caption
-          </Button>
         </ButtonGroup>
         <Spacer my={2} />
         <Textarea
@@ -273,7 +271,9 @@ const PostEditor = ({ post, stopEditing }: Props) => {
         Back To Posts
       </Button>
       <Divider my={4} />
-      <ReactMarkdown source={markdown}></ReactMarkdown>
+      <Box mx={8} textStyle="blogPost">
+        <ReactMarkdown source={markdown} escapeHtml={false} />
+      </Box>
     </div>
   );
 };
