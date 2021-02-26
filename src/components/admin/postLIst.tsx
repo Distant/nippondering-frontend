@@ -1,9 +1,24 @@
 import * as React from "react"
-import { Button, Divider, Flex, Heading, Spacer, Text } from "@chakra-ui/core"
-import { BlogPostList, createBlogPost, deleteBlogPost } from "../../services/admin-service"
+import { Button, Divider, Flex, Heading, HStack, Spacer, Text } from "@chakra-ui/core"
+import {
+  BlogPostList,
+  createBlogPost,
+  deleteBlogPost,
+  publishBlogPost,
+  unpublishBlogPost,
+  RequestError,
+} from "../../services/admin-service"
 import BlogPostFull from "../../types/blogPostFull"
 import { url } from "../../utilities/fetchUtilities"
-import { ctaButtonProps, primaryButtonOutline, primaryButtonSolid } from "../commonProps"
+import {
+  ctaButtonProps,
+  errorTextProps,
+  primaryButtonOutline,
+  primaryButtonSolid,
+  secondaryButtonSolid,
+  tertiaryButtonSolid,
+} from "../commonProps"
+import { useState } from "react"
 
 type Props = {
   posts: BlogPostList
@@ -28,7 +43,6 @@ const fetchPosts = async (onComplete: (postList: BlogPostList) => void) => {
   })
   const res = await fetch(request)
   const list: BlogPostList = await res.json()
-  console.log(list)
   onComplete(list)
 }
 
@@ -36,10 +50,14 @@ const ListItem = ({
   post,
   onEdit,
   onDelete,
+  onChangeStatus,
+  errorMessage,
 }: {
   post: BlogPostFull
   onEdit: (e: any) => void
   onDelete: (e: any) => void
+  onChangeStatus: (postId: number, action: "Publish" | "Unpublish") => void
+  errorMessage?: string
 }) => {
   return (
     <div>
@@ -48,19 +66,42 @@ const ListItem = ({
       </Heading>
       <Text>{post.summary}</Text>
       <Text textAlign="right">{"Posted " + new Date(post.published!).toDateString()}</Text>
-      <Button {...primaryButtonSolid} onClick={() => onEdit(post.postId)} mr={2}>
-        Edit
-      </Button>
-      <Button {...primaryButtonOutline} onClick={onDelete} mr={2}>
-        Delete
-      </Button>
+      <HStack>
+        <Button {...primaryButtonSolid} onClick={() => onEdit(post.postId)} mr={2}>
+          Edit
+        </Button>
+        <Button {...primaryButtonOutline} onClick={onDelete} mr={2}>
+          Delete
+        </Button>
+        <Spacer />
+        {post.status === "Unlisted" ? (
+          <Button {...secondaryButtonSolid} onClick={() => onChangeStatus(post.postId, "Publish")}>
+            Publish
+          </Button>
+        ) : (
+          <Button {...tertiaryButtonSolid} onClick={() => onChangeStatus(post.postId, "Unpublish")}>
+            Unpublish
+          </Button>
+        )}
+      </HStack>
+      {errorMessage && (
+        <Text {...errorTextProps} mt={2} p={0}>
+          {errorMessage}
+        </Text>
+      )}
     </div>
   )
 }
 
 const PostList = ({ posts, editPost }: Props) => {
   const [blogPosts, setBlogPosts] = React.useState(posts.items)
-  const refreshList = () => fetchPosts((postList) => setBlogPosts(postList.items))
+  const [error, setError] = useState<{ message: string; id: number } | undefined>(undefined)
+
+  const refreshList = () =>
+    fetchPosts((postList) => {
+      setError(undefined)
+      setBlogPosts(postList.items)
+    })
   const createPost = () => {
     createNewPost((_) => {
       refreshList()
@@ -68,7 +109,24 @@ const PostList = ({ posts, editPost }: Props) => {
   }
 
   const deletePage = (id: number) => {
-    deleteBlogPost(id, refreshList, (e) => console.log(e))
+    deleteBlogPost(id, refreshList, (e) => {
+      setError({ message: e?.errors[0]?.errorMessage ? e.errors[0].errorMessage : e.toString(), id: id })
+    })
+  }
+
+  const changeStatus = (postId: number, action: "Publish" | "Unpublish") => {
+    switch (action) {
+      case "Publish":
+        publishBlogPost(postId, refreshList, (e: any) => {
+          setError({ message: e?.errors[0]?.errorMessage ? e.errors[0].errorMessage : e.toString(), id: postId })
+        })
+        return
+      case "Unpublish":
+        unpublishBlogPost(postId, refreshList, (e: any) => {
+          setError({ message: e?.errors[0]?.errorMessage ? e.errors[0].errorMessage : e.toString(), id: postId })
+        })
+        return
+    }
   }
 
   return (
@@ -86,7 +144,13 @@ const PostList = ({ posts, editPost }: Props) => {
         return (
           <div key={item.postId}>
             <Divider my={4} />
-            <ListItem post={item} onEdit={editPost} onDelete={() => deletePage(item.postId)} />
+            <ListItem
+              post={item}
+              onEdit={editPost}
+              onDelete={() => deletePage(item.postId)}
+              onChangeStatus={changeStatus}
+              errorMessage={error && error.id === item.postId ? error.message : undefined}
+            />
           </div>
         )
       })}

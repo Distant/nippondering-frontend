@@ -1,7 +1,11 @@
 import BlogPostFull, { PostImage } from "../types/blogPostFull"
 import BlogPostPreviewType from "../types/blogPostPreview"
-import { ScheduledTweet, ScheduleTweetDto } from "../types/tweets"
+import { ScheduledPost, ScheduledPostDto } from "../types/socialPosts"
 import { url } from "../utilities/fetchUtilities"
+
+export type RequestError = {
+  errors: { errorMessage: string }[]
+}
 
 function createRequest(
   url: string,
@@ -39,11 +43,37 @@ async function http<T>(request: RequestInfo, onSuccess: (obj: T) => void, onErro
   try {
     let res = await fetch(request)
 
+    if (res.status === 400) {
+      let errors: RequestError = await res.json()
+      onError(errors)
+      return
+    }
+
     if (!res.ok) {
       onError(res.statusText)
     } else {
       let obj: T = await res.json()
       onSuccess(obj)
+    }
+  } catch (ex) {
+    onError(ex)
+  }
+}
+
+async function httpNoResponse(request: RequestInfo, onSuccess: () => void, onError: (e: any) => void) {
+  try {
+    let res = await fetch(request)
+
+    if (res.status === 400) {
+      let errors: RequestError = await res.json()
+      onError(errors)
+      return
+    }
+
+    if (!res.ok) {
+      onError(res.statusText)
+    } else {
+      onSuccess()
     }
   } catch (ex) {
     onError(ex)
@@ -83,22 +113,14 @@ const PostUnpublishRequest = {
   statusOperation: "Unlist",
 }
 
-export async function publishBlogPost(
-  postId: number,
-  onSuccess: (newPost: BlogPostFull) => void,
-  onError: (e: any) => void
-) {
+export async function publishBlogPost(postId: number, onSuccess: () => void, onError: (e: any) => void) {
   const request = createRequest(url(`api/posts/${postId}/ChangeStatus`), "POST", true, true, PostPublishRequest)
-  http(request, onSuccess, onError)
+  httpNoResponse(request, onSuccess, onError)
 }
 
-export async function unpublishBlogPost(
-  postId: number,
-  onSuccess: (newPost: BlogPostFull) => void,
-  onError: (e: any) => void
-) {
+export async function unpublishBlogPost(postId: number, onSuccess: () => void, onError: (e: any) => void) {
   const request = createRequest(url(`api/posts/${postId}/ChangeStatus`), "POST", true, true, PostUnpublishRequest)
-  http(request, onSuccess, onError)
+  httpNoResponse(request, onSuccess, onError)
 }
 
 export function uploadImages(
@@ -130,3 +152,5 @@ export function searchTags(searchTerm: string, onSuccess: (tags: postTag[]) => v
   const request = createRequest(url(`api/tags/search`), "POST", false, true, searchTerm)
   http(request, onSuccess, onError)
 }
+
+export async function postScheduledTweet(tweet: ScheduledPostDto) {}
