@@ -1,10 +1,9 @@
-import BlogPostPreviewType from "../../types/blogPostPreview";
-import * as React from "react";
-import { Button, Divider, Heading, Text } from "@chakra-ui/core";
-import { BlogPostList, createBlogPost, deleteBlogPost } from "../../services/admin-service";
-import BlogPostFull from "../../types/blogPostFull";
-import { url } from "../../utilities/fetchUtilities";
-import { ctaButtonProps, primaryButtonOutline, primaryButtonSolid } from "../commonProps";
+import * as React from "react"
+import { Button, Divider, Flex, Heading, Spacer, Text } from "@chakra-ui/core"
+import { BlogPostList, createBlogPost, deleteBlogPost } from "../../services/admin-service"
+import BlogPostFull from "../../types/blogPostFull"
+import { url } from "../../utilities/fetchUtilities"
+import { ctaButtonProps, primaryButtonOutline, primaryButtonSolid } from "../commonProps"
 
 type Props = {
   posts: BlogPostList;
@@ -72,15 +71,22 @@ const PostList = ({ posts, editPost }: Props) => {
 
   return (
     <div>
-      <Button {...primaryButtonSolid} onClick={createPost}>Create New</Button>
-      <Divider my={4} />
+      <Flex alignItems="center">
+        <Heading textStyle="sectionTitle" textAlign="left" fontWeight="bold" my={0} py={2} as="h2">
+          My Blog Posts
+        </Heading>
+        <Spacer />
+        <Button {...ctaButtonProps} onClick={createPost}>
+          Create New
+        </Button>
+      </Flex>
       {blogPosts.map((item) => {
         return (
           <div key={item.postId}>
-            <ListItem post={item} onEdit={editPost} onDelete={() => deletePage(item.postId)} />
             <Divider my={4} />
+            <ListItem post={item} onEdit={editPost} onDelete={() => deletePage(item.postId)} />
           </div>
-        );
+        )
       })}
     </div>
   );
