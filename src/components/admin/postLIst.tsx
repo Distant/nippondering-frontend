@@ -6,15 +6,15 @@ import { url } from "../../utilities/fetchUtilities"
 import { ctaButtonProps, primaryButtonOutline, primaryButtonSolid } from "../commonProps"
 
 type Props = {
-  posts: BlogPostList;
-  editPost: (postId: number) => void;
-};
+  posts: BlogPostList
+  editPost: (postId: number) => void
+}
 
 const createNewPost = (createPostSuccess: (newPost: BlogPostFull) => void) => {
   createBlogPost(createPostSuccess, (e) => {
-    console.error(e.toString());
-  });
-};
+    console.error(e.toString())
+  })
+}
 
 const fetchPosts = async (onComplete: (postList: BlogPostList) => void) => {
   const request = new Request(url("api/posts"), {
@@ -25,25 +25,27 @@ const fetchPosts = async (onComplete: (postList: BlogPostList) => void) => {
       "Content-Type": "application/json;charset=UTF-8",
     },
     mode: "cors",
-  });
-  const res = await fetch(request);
-  const list: BlogPostList = await res.json();
-  console.log(list);
-  onComplete(list);
-};
+  })
+  const res = await fetch(request)
+  const list: BlogPostList = await res.json()
+  console.log(list)
+  onComplete(list)
+}
 
 const ListItem = ({
   post,
   onEdit,
   onDelete,
 }: {
-  post: BlogPostFull;
-  onEdit: (e: any) => void;
-  onDelete: (e: any) => void;
+  post: BlogPostFull
+  onEdit: (e: any) => void
+  onDelete: (e: any) => void
 }) => {
   return (
     <div>
-      <Heading as="h2">{post.title}</Heading>
+      <Heading textStyle="sectionTitle" textAlign="left" p={0} m={0} as="h2">
+        {post.title}
+      </Heading>
       <Text>{post.summary}</Text>
       <Text textAlign="right">{"Posted " + new Date(post.published!).toDateString()}</Text>
       <Button {...primaryButtonSolid} onClick={() => onEdit(post.postId)} mr={2}>
@@ -53,21 +55,21 @@ const ListItem = ({
         Delete
       </Button>
     </div>
-  );
-};
+  )
+}
 
 const PostList = ({ posts, editPost }: Props) => {
-  const [blogPosts, setBlogPosts] = React.useState(posts.items);
-  const refreshList = () => fetchPosts((postList) => setBlogPosts(postList.items));
+  const [blogPosts, setBlogPosts] = React.useState(posts.items)
+  const refreshList = () => fetchPosts((postList) => setBlogPosts(postList.items))
   const createPost = () => {
     createNewPost((_) => {
-      refreshList();
-    });
-  };
+      refreshList()
+    })
+  }
 
   const deletePage = (id: number) => {
-    deleteBlogPost(id, refreshList, (e) => console.log(e));
-  };
+    deleteBlogPost(id, refreshList, (e) => console.log(e))
+  }
 
   return (
     <div>
@@ -89,7 +91,7 @@ const PostList = ({ posts, editPost }: Props) => {
         )
       })}
     </div>
-  );
-};
+  )
+}
 
-export default PostList;
+export default PostList
