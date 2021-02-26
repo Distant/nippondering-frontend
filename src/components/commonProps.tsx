@@ -79,9 +79,37 @@ export const primaryButtonSolid: ButtonProps = {
   children: null,
   border: "0px",
   transition: "all 80ms",
-  _hover: { backgroundColor: "purple.500" },
-  _focus: { backgroundColor: "purple.400" },
-  _active: { backgroundColor: "purple.500" }
+  _hover: { backgroundColor: "purple.400" },
+  _focus: { backgroundColor: "purple.600" },
+  _active: { backgroundColor: "purple.600" },
+}
+
+export const secondaryButtonSolid: ButtonProps = {
+  variant: "solid",
+  backgroundColor: "green.500",
+  color: "white",
+  fontWeight: "normal",
+  alignSelf: "center",
+  children: null,
+  border: "0px",
+  transition: "all 80ms",
+  _hover: { backgroundColor: "green.400" },
+  _focus: { backgroundColor: "green.600" },
+  _active: { backgroundColor: "green.600" },
+}
+
+export const tertiaryButtonSolid: ButtonProps = {
+  variant: "solid",
+  backgroundColor: "orange.500",
+  color: "white",
+  fontWeight: "normal",
+  alignSelf: "center",
+  children: null,
+  border: "0px",
+  transition: "all 80ms",
+  _hover: { backgroundColor: "orange.400" },
+  _focus: { backgroundColor: "orange.600" },
+  _active: { backgroundColor: "orange.600" },
 }
 
 export const primaryButtonOutline: ButtonProps = {
@@ -93,8 +121,9 @@ export const primaryButtonOutline: ButtonProps = {
   children: null,
   padding: 2,
   transition: "all 25ms",
-  _hover: {},
-  _focus: { backgroundColor: "#00005511" }
+  _hover: { borderColor: "purple.400", textColor: "purple.400" },
+  _focus: { borderColor: "purple.600", textColor: "purple.600" },
+  _active: { borderColor: "purple.600", textColor: "purple.600" },
 }
 
 export const primaryButtonText: ButtonProps = {
