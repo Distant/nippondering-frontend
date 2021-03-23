@@ -4,7 +4,7 @@ import {
   Heading,
   Input,
   Textarea,
-  Image,
+  Image as ChakraImage,
   Divider,
   ButtonGroup,
   Spacer,
@@ -84,7 +84,7 @@ const ImagesInput = ({ images, onClick }: { images: PostImage[]; onClick: (e: an
     <div>
       {images.map((image) => {
         return (
-          <Image
+          <ChakraImage
             key={image.path}
             src={imgUrl(image.path) + "_thumb" + (image.hasWebp ? ".webp" : ".jpg")}
             p={2}
@@ -100,6 +100,51 @@ const ImagesInput = ({ images, onClick }: { images: PostImage[]; onClick: (e: an
       })}
     </div>
   )
+}
+
+// currently fail if any image isn't valid
+const setImages = async (
+  files: FileList,
+  setImagesToUpload: React.Dispatch<React.SetStateAction<FileList | undefined>>
+) => {
+  var reader = new FileReader()
+  for (let i = 0; i < files.length; i++) {
+    const file = files.item(i)
+    if (!file) continue
+
+    const checkSize = await new Promise((resolve, reject) => {
+      // 2mb server file limit
+      if (file.size > 2000000) resolve(false)
+
+      // verify dimensions
+      reader.readAsDataURL(file)
+      reader.onload = function (e) {
+        var image = new Image()
+
+        //Set the Base64 string return from FileReader as source.
+        if (!e?.target?.result) resolve(false)
+        else {
+          image.src = e.target.result.toString()
+        }
+
+        //Validate the File Height and Width.
+        image.onload = function () {
+          var height = image.height
+          var width = image.width
+          if (width < 840 || height < 630) {
+            alert("Height must be at least 840px and width 630px.")
+            resolve(false)
+          }
+          resolve(true)
+        }
+      }
+    })
+    if (!checkSize) {
+      setImagesToUpload(undefined)
+      return
+    }
+  }
+  setImagesToUpload(files)
 }
 
 const PostEditor = ({ post, stopEditing }: Props) => {
@@ -221,7 +266,7 @@ const PostEditor = ({ post, stopEditing }: Props) => {
           accept="image/jpeg"
           multiple={true}
           onChange={(e) => {
-            if (e.target.files) setImagesToUpload(e.target.files)
+            if (e.target.files) setImages(e.target.files, setImagesToUpload)
           }}
           ref={imagesInputRef}
         />
