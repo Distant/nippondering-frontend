@@ -11,6 +11,8 @@ import PostList from "../../components/admin/postLIst"
 import PostEditor from "../../components/admin/postEditor"
 import BlogPostFull from "../../types/blogPostFull"
 import SocialPostSchedule from "../../components/admin/SocialPostSchedule"
+import useSWR from "swr"
+import { ScheduledPost } from "../../types/socialPosts"
 
 const fetchBlogPost = async (url: string) => {
   const res = await fetch(new Request(url, { credentials: "include" }))
@@ -76,7 +78,7 @@ const Dashboard = () => {
         </Box>
 
         <Box backgroundColor="white" {...shadows[3]} borderRadius="4px" p={4}>
-          <SocialPostSchedule postList={{ posts: [], page: 0, totalPages: 1 }} />
+          <SocialPostSchedule />
         </Box>
       </Grid>
     </Container>
