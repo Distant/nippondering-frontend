@@ -1,6 +1,6 @@
 import BlogPostFull, { PostImage } from "../types/blogPostFull"
 import BlogPostPreviewType from "../types/blogPostPreview"
-import { ScheduledPost, ScheduledPostDto } from "../types/socialPosts"
+import { ScheduledPost, ScheduledPostDto, ScheduledPostRequestDto } from "../types/socialPosts"
 import { url } from "../utilities/fetchUtilities"
 
 export type RequestError = {
@@ -149,8 +149,20 @@ type postTag = {
 }
 
 export function searchTags(searchTerm: string, onSuccess: (tags: postTag[]) => void, onError: (e: any) => void) {
-  const request = createRequest(url(`api/tags/search`), "POST", false, true, searchTerm)
+  const request = createRequest(url(`api/tags/search`), "POST", true, true, searchTerm)
   http(request, onSuccess, onError)
 }
 
-export async function postScheduledTweet(tweet: ScheduledPostDto) {}
+export async function getScheduledTweets(onSuccess: (posts: ScheduledPostDto[]) => void, onError: (e: any) => void) {
+  const request = createRequest(url(`api/socialMediaPosts`), "GET", true, true)
+  http(request, onSuccess, onError)
+}
+
+export async function postScheduledTweet(
+  tweet: ScheduledPostRequestDto,
+  onSuccess: (post: ScheduledPostDto) => void,
+  onError: (e: any) => void
+) {
+  const request = createRequest(url(`api/socialMediaPosts`), "POST", true, true, tweet)
+  http(request, onSuccess, onError)
+}
