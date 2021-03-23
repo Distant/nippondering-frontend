@@ -15,7 +15,7 @@ export type ScheduledPost = {
   postId: number
   message: string
   sendDate: string
-  mediaType: SocialMediaType
+  mediaType?: SocialMediaType
   status: SocialMediaPostStatus
 }
 
@@ -30,7 +30,7 @@ export type ScheduledPostDto = {
   postId: number
   message: string
   sendDate: string
-  mediaType: SocialMediaType
+  mediaType?: SocialMediaType
   status: SocialMediaPostStatus
 }
 
