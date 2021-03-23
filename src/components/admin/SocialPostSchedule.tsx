@@ -23,24 +23,28 @@ import {
 import * as Yup from "yup"
 import { ctaButtonProps } from "../commonProps"
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa"
+import { postScheduledTweet } from "../../services/admin-service"
+import useSWR from "swr"
+import { url } from "../../utilities/fetchUtilities"
 
 export const FormInput = ({ field, form, ...props }: FieldProps) => {
   return <Input {...field} {...props} mb={2} />
 }
 
-const SocialPostSchedule = (props: { postList: ScheduledPostList }) => {
-  const [posts, setPosts] = useState(props.postList.posts)
+const SocialPostSchedule = () => {
+  const socialPosts = useSWR<ScheduledPost[], any>(url(`api/socialMediaPosts`), async (url: string) => {
+    const res = await fetch(new Request(url, { credentials: "include" }))
+    return await res.json()
+  })
 
   const schedulePost = (postDto: ScheduledPostRequestDto) => {
-    const newPost: ScheduledPost = {
-      postId: Math.random() * 10,
-      message: postDto.message,
-      sendDate: postDto.sendDate,
-      status: SocialMediaPostStatus.Sending,
-      mediaType: { twitter: true, facebook: true, instagram: false },
-    }
-    //await postScheduledTweet(tweetDto)
-    setPosts([newPost, ...posts])
+    postScheduledTweet(
+      postDto,
+      (_) => {
+        socialPosts.revalidate()
+      },
+      (e) => console.log(e)
+    )
   }
 
   return (
@@ -50,23 +54,27 @@ const SocialPostSchedule = (props: { postList: ScheduledPostList }) => {
       </Heading>
 
       <Grid rowGap={2}>
-        {posts.map((post) => {
-          return (
-            <Box key={post.message}>
-              <Text>{post.message}</Text>
-              {new Date(post.sendDate).getTime() > Date.now() ? (
-                <Text fontSize="75%">{"Scheduled for " + new Date(post.sendDate).toDateString()}</Text>
-              ) : (
-                <Text fontSize="75%">{"Posted at " + new Date(post.sendDate).toDateString()}</Text>
-              )}
-              <HStack>
-                {post.mediaType.twitter && <FaTwitter color="#1DA1F2" />}
-                {post.mediaType.facebook && <FaFacebook color="#4267B2" />}
-                {post.mediaType.instagram && <FaInstagram color="#fb3958" />}
-              </HStack>
-            </Box>
-          )
-        })}
+        {socialPosts.data &&
+          socialPosts.data.map((post) => {
+            return (
+              <Box key={post.postId}>
+                <Text>{post.message}</Text>
+                {console.log(post.sendDate, post.message)}
+                {new Date(post.sendDate).getTime() > Date.now() ? (
+                  <Text fontSize="75%">{"Scheduled for " + new Date(post.sendDate).toLocaleString()}</Text>
+                ) : (
+                  <Text fontSize="75%">{"Posted at " + new Date(post.sendDate).toLocaleString()}</Text>
+                )}
+                {post.mediaType && (
+                  <HStack>
+                    {post.mediaType.twitter && <FaTwitter color="#1DA1F2" />}
+                    {post.mediaType.facebook && <FaFacebook color="#4267B2" />}
+                    {post.mediaType.instagram && <FaInstagram color="#fb3958" />}
+                  </HStack>
+                )}
+              </Box>
+            )
+          })}
       </Grid>
 
       <Spacer />
@@ -93,9 +101,17 @@ const SocialPostSchedule = (props: { postList: ScheduledPostList }) => {
         })}
         onSubmit={(values, helpers) => {
           helpers.setSubmitting(true)
+          const date =
+            new Date(values.date).toISOString().slice(0, 10) +
+            "T" +
+            values.time +
+            ":00.000+" +
+            new Date().getTimezoneOffset() +
+            ":00"
+          console.log(date)
           schedulePost({
             message: values.message,
-            sendDate: values.date + values.time,
+            sendDate: date,
           })
           helpers.setSubmitting(false)
           helpers.resetForm()
