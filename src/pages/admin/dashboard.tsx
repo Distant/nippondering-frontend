@@ -78,7 +78,9 @@ const Dashboard = () => {
         </Box>
 
         <Box backgroundColor="white" {...shadows[3]} borderRadius="4px" p={4}>
-          <SocialPostSchedule />
+          {
+            //<SocialPostSchedule />
+          }
         </Box>
       </Grid>
     </Container>
